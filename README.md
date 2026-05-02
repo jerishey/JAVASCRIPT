@@ -601,6 +601,7 @@ console.log(a); // Works (var is function/global scoped)
 JavaScript operators are symbols or keywords used to perform operations on values and variables. They are the building blocks of JavaScript expressions and can manipulate data in various ways.
 
 ### There are various operators supported by JavaScript:
+<i>
 
 `1. JavaScript Arithmetic Operators :` Arithmetic Operators perform mathematical calculations like addition, subtraction, multiplication, etc.
 ```bash
@@ -937,3 +938,273 @@ username = "Kartik";
 defaultName = "Guest";
 console.log(username ?? defaultName);
 ```
+`5.  JavaScript Bitwise Operators :` In JavaScript, a number is stored as a 64-bit floating-point number but bitwise operations are performed on a 32-bit binary number. To perform a bit-operation, JavaScript converts the number into a 32-bit binary number (signed) and performs the operation and converts back the result to a 64-bit number.
+
+<b>1. Bitwise AND Operator ( & ) :</b>  It is a binary operator i.e. accepts two operands. Bit-wise AND (&) returns 1 if both the bits are set ( i.e 1) and 0 in any other case.
+
+```bash
+Example:
+let x = 5; 
+let y = 3; 
+console.log(x & y);
+
+Output:
+A	B	OUTPUT ( A & B )
+0	0	0
+0	1	0
+1	0	0
+1	1	1
+```
+<b> 2. Bitwise OR Operator ( | ) :</b> It is a binary operator i.e. accepts two operands. Bit-wise OR ( | ) returns 1 if any of the operands is set (i.e. 1) and 0 in any other case.
+```bash
+Example:
+let x = 5; 
+let y = 3; 
+console.log(x | y);
+
+Output:
+A	B	OUTPUT ( A | B )
+0	0	0
+0	1	1
+1	0	1
+1	1	1
+```
+
+<b>3. Bitwise XOR Operator ( ^ ) : </b>It is a binary operator i.e. accepts two operands. Bit-wise XOR ( ^ ) returns 1 if both the operands are different and 0 in any other case.
+```bash
+Example:
+let x = 5; 
+let y = 3; 
+console.log(x ^ y);
+
+Output:
+A	B	OUTPUT ( A ^ B )
+0	0	0
+0	1	1
+1	0	1
+1	1	0
+```
+
+<b>4. Bitwise NOT Operator ( ~ ) :</b> It is a unary operator i.e. accepts single operands. Bit-wise NOT ( ~ ) flips the bits i.e 0 becomes 1 and 1 becomes 0.
+```bash
+Example:
+console.log(~10); 
+console.log(~-10);
+
+Output:
+A	OUTPUT ( ~A )
+0	1
+1	0
+```
+
+<b>5. Left Shift Operator ( << ) : </b> It's a binary operator i.e. it accepts two operands. The first operator specifies the number and the second operator specifies the number of bits to shift. Each bit is shifted towards the left and 0 bits are added from the right. The excess bits from the left are discarded.
+```bash
+Example:
+let a = 4; 
+console.log(a << 1); 
+console.log(a << 4);
+
+Ouput:
+A	                    6 ( 00000000000000000000000000000110 )
+B	                    1 ( 00000000000000000000000000000001 )
+OUTPUT ( A << B )	   12 ( 00000000000000000000000000001100 )
+```
+
+<b>6. Right Shift Operator ( >> ) :</b> It's a binary operator i.e. it accepts two operands. The first operand specifies the number and the second operand specifies the number of bits to shift. Each bit is shifted towards the right, the overflowing bits are discarded. This is Sign Propagating as the bits are added from the left depending upon the sign of the number (i.e. 0 if positive and 1 if negative )
+```bash
+Example:
+let a = 4; 
+let b = -32 
+console.log(a >> 1); 
+console.log(b >> 4);
+
+Output:
+A	                    6 ( 00000000000000000000000000000110 )
+B	                    1 ( 00000000000000000000000000000001 )
+OUTPUT ( A >> B )	    3 ( 00000000000000000000000000000011 )
+```
+
+<b> 7. Zero Fill Right Shift Operator ( >>> ) : </b> It's a binary operator i.e. it accepts two operands. The first operand specifies the number and the second operand specifies the number of bits to shift. Each bit is shifted towards the right, the overflowing bits are discarded. 0 bit is added from the left so its zero fill right shift.
+```bash
+Example:
+let a = 4; 
+let b = -1 
+console.log(a >>> 1); 
+console.log(b >>> 4);
+
+Output:
+A	                    6 ( 00000000000000000000000000000110 )
+B	                    1 ( 00000000000000000000000000000001 )
+OUTPUT ( A >>> B )	    3 ( 00000000000000000000000000000011 )
+```
+
+`6. JavaScript Ternary Operator :` The Ternary Operator in JavaScript is a conditional operator that evaluates a condition and returns one of two values based on whether the condition is true or false. It simplifies decision-making in code, making it more concise and readable.
+```bash
+Syntax:
+condition ? trueExpression : falseExpression
+
+- Condition: A condition that evaluates to true or false.
+- expressionIfTrue: The value or expression is returned if the condition is true.
+- expressionIfFalse: The value or expression returned if the condition is false.
+
+Example:
+let hour = 15;
+let message = (hour < 12) ? 'Good morning' : 'Good afternoon';
+
+console.log(message);
+
+Explanation:
+- The ternary operator checks if the hour is less than 12.
+- If the condition is true, it assigns 'Good morning' to message.
+- Otherwise, it assigns 'Good afternoon' to message.
+```
+
+`7. JavaScript Unary Operators :` JavaScript Unary Operators work on a single operand and perform various operations, like incrementing/decrementing, evaluating data type, negation of a value, etc.
+
+<b>1. Unary Plus (+) Operator : </b> The unary plus (+) converts an operand into a number, if possible. It is commonly used to ensure numerical operations on variables that may contain numeric strings. If the operand is a string that represents a valid number, it will be converted to a number. Otherwise, it will evaluate to NaN (Not-a-Number).
+```bash
+Example:
+let s1 = "12";
+
+// Using unary plus to convert string to number
+let x = +s1;
+console.log(x);
+
+// Here we are using typeof operator
+console.log(typeof (x))
+
+// "Sum" cannot be converted to a number
+let s2 = +"Sum";
+console.log(s2);
+
+Output:
+12
+number
+NaN
+```
+
+<b> 2. Unary Minus (-) Operator : </b> The Unary Negation (-) operator is used to convert its operand to a negative number if it isn’t already a negative number.
+```bash
+let s1 = "12";
+
+// Unary negation, negates the
+// value of number
+let x = -s1;
+
+console.log(x);
+
+// Unary negation, tries to convert
+// 'Eng' to a number
+let s2 = -"Eng";
+
+console.log(s2);
+
+Output:
+-12
+NaN
+```
+
+<b>3. Unary Increment (++) Operator :</b> The unary increment operator (++) adds 1 to its operand's value and evaluates to the updated value. It can be used as a postfix or prefix operator.
+
+```bash
+1. Postfix : In postfix, the current value of the variable is used in the expression, and then the variable's value is incremented by 1.
+
+2. Prefix : In prefix, the variable's value is first incremented by 1, and then the updated value is used in the expression.
+
+Example:
+// Case 1: Postfix
+let x = 12;
+let y = x++;
+console.log(x);
+console.log(y);
+
+// Case 2: Preifix
+x = 10;
+y = ++x;
+console.log(x);
+console.log(y);
+
+Output:
+13
+12
+11
+11
+```
+
+<b>4. Unary Decrement (--) Operator : </b> The unary decrement operator (--) subtracts 1 from its operand's value and evaluates it to the updated value, and we can use it as a postfix or prefix operator.
+
+```bash
+1. Postfix: In postfix form, the current value of the variable is used in the expression, and then the variable's value is decremented by 1.
+
+2. Prefix: In prefix form, the variable's value is first decremented by 1, and then the updated value is used in the expression.
+
+Example:
+let x = 8;
+let y = x--;
+console.log(x);
+console.log(y);
+
+x = 15;
+y = --x;
+console.log(x);
+console.log(y);
+
+Output:
+7
+8
+14
+14
+```
+<b>5. typeof Operator : </b> The JavaScript typeof operator returns the data type of its operand in the form of a string. The operand can be any object, function, or variable.
+```bash
+Example:
+let x = 18;
+let s = "JavaScript";
+let isTrue = true;
+let obj = { name: "Aman", age: 21 };
+let undefinedVar;
+
+console.log(typeof x);
+console.log(typeof s);
+console.log(typeof isTrue);
+console.log(typeof obj);
+console.log(typeof undefinedVar);
+
+Output:
+number
+string
+boolean
+object
+undefined
+```
+<b>6. delete Operator : </b> The delete operator in JavaScript removes a property from an object. If no other references exist, the property's memory is automatically released.
+```bash
+Example:
+let person = {
+    name: "Ankit",
+    age: 21,
+    city: "Noida"
+};
+
+console.log(person);
+
+delete person.age;
+
+console.log(person);
+
+Output:
+{ name: 'Ankit', age: 21, city: 'Noida' }
+{ name: 'Ankit', city: 'Noida' }
+```
+<b>7. void Operator : </b> The void operator evaluates the given expression and then returns undefined.
+```bash
+Example:
+function myFunction() {
+    return void 0;
+}
+console.log(myFunction());
+
+Output:
+undefined
+```
+</i>
