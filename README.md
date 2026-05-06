@@ -1207,4 +1207,54 @@ console.log(myFunction());
 Output:
 undefined
 ```
+`8. JavaScript in and instanceof operators :` In JavaScript, the in and instanceof operators are used to check relationships within objects and classes.
+
+- The in operator checks whether a property exists in an object or an index exists in an array.
+- The instanceof operator checks whether an object is an instance of a specific class or constructor.
+
+Both operators return a Boolean value (true or false) based on the result of the check.
+
+<b> 1. JavaScript in Operator :</b> JavaScript in operator is an inbuilt operator which is used to check whether a particular property exists in an object or not. It returns a boolean value true if the specified property is in an object, otherwise, it returns false.
+```bash
+Example:
+const Data = {
+    name: "Rahul",
+    age: 21,
+    city: "Noida"
+};
+
+// true ("name" property exists in the object)
+console.log("name" in Data);
+
+// false ("gender" property doesn't exist in the object)
+console.log("address" in Data);
+
+Output:
+true
+false
+```
+
+<b> 2. JavaScript instanceof Operator :</b> The instanceof operator in JavaScript is used to check the type of an object at run time. It returns a boolean value if true then it indicates that the object is an instance of a particular class and if false then it is not. 
+```bash
+Syntax:
+        let name = objectName instanceof objectType
+
+Parameters:
+- objectName: States the name of the Object.
+- Return Value: This method returns a boolean value if true then it indicates that the object is an instance of a particular class and if false then it is not. 
+
+Example:
+let languages = ["HTML", "CSS", "JavaScript"];
+
+console.log(languages instanceof Array);
+console.log(languages instanceof Object);
+console.log(languages instanceof String);
+console.log(languages instanceof Number);
+
+Output:
+true
+true
+false
+false
+```
 </i>
