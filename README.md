@@ -1258,3 +1258,261 @@ false
 false
 ```
 </i>
+
+## 4. Type Conversion and Type Coercion in JavaScript
+Data types in JavaScript are flexible due to which the type of the variables can be changed when the program runs. Type Conversion and Type Coercion are the two ways through which we can change the data type of the variables from one type to the other.
+
+### Type Conversion :
+Type Conversion is the process in JavaScript in which the data type of the variables is converted from one type to another type manually. This is also known as explicit type casting.
+
+- Performed manually by the programmer.
+- Uses built-in JavaScript methods like Number(), String(), and Boolean().
+- Ensures control over data types in code.
+
+<b> Performing type conversion : </b>
+
+#### 1. String to Number : We can convert a string into numbers using the Number() function, parseInt(), and parseFloat() methods.
+
+`1. Number() Constructor :` The JavaScript Number() constructor is used to create a Number object. When used as a regular function, it converts different data types into numbers if possible.
+
+- Creates a Number object when used with the new keyword.
+- Performs type conversion to a number when called as a function.
+- Returns NaN if the value cannot be converted to a valid number.
+```bash
+Syntax :
+            Number(object)
+
+Parameters :
+- object: This parameter holds the objects that will be converted to any type of javascript variable to number type. 
+- Return Values: The number() constructor returns the number format for any type of javascript variable.
+
+Example:
+// Using Number() as a constructor
+let numObj = new Number(25);
+console.log(numObj);        // Number {25}
+
+// Using Number() as a function (type conversion)
+let a = Number("123");
+let b = Number(true);
+let c = Number("hello");
+
+console.log(a);  
+console.log(b);  
+console.log(c);
+```
+`2. parseInt() Method :` The parseInt() method parses a value by converting it to a string and returns the first integer found. It also accepts an optional radix parameter that specifies the base of the numeral system.
+
+- Converts a string into an integer value.
+- Supports different number systems using the radix parameter.
+- Stops parsing when a non-numeric character is encountered.
+
+```bash
+Syntax :
+        parseInt(Value, radix);
+
+Parameters :
+- Value: This parameter contains a string that is converted to an integer.
+- radix: This parameter represents the radix or base to be used and it is 
+optional.
+
+Return value :
+
+- It returns a number and if the first character can't be converted to a number then the function returns NaN.
+- It returns a number parsed up to that point where it encounters a character that is not a number in the specified radix(base). 
+
+Example:
+// Basic string to integer conversion
+console.log(parseInt("123"));
+
+// Stops at non-numeric character
+console.log(parseInt("45px"));       
+
+// Using radix parameter (base 2)
+console.log(parseInt("1010", 2));    
+
+// Invalid conversion
+console.log(parseInt("abc"));
+```
+
+`3. parseFloat() Method :` JavaScript parseFloat() Method is used to accept the string and convert it into a floating-point number. If the string does not contain a numeral value or If the first character of the string is not a Number then it returns NaN i.e, not a number. It actually returns a floating-point number parsed up to that point where it encounters a character that is not a Number.
+
+```bash
+Syntax:
+
+        parseFloat(Value)
+
+Parameters :
+- value: This parameter obtains a string that is converted to a floating-point number.
+- Return value: It returns a floating-point Number and if the first character of a string cannot be converted to a number then the function returns NaN i.e, not a number.
+
+Example:
+let v2 = parseFloat("3.14");
+
+console.log('Using parseFloat("3.14") = ' + v2);
+```
+
+#### 2. Number to String : We can convert a number into a string using String() function or we can concatenate it with an empty string("").
+
+```bash
+String() Method :  The String() method in JavaScript is a built-in function that converts any given value to its string representation. Whether the value is a number, boolean, object, or even null or undefined, the String() method ensures that the value is returned as a string. It does not change the original value but provides a string version of it, which can be useful when concatenating or displaying data.
+
+Syntax :
+        String(value)
+
+Parameter:
+- value: The value you want to convert to a string. This can be any JavaScript data type such as a number, boolean, array, object, null, or undefined.
+- Return Type: It returns a string as a result
+
+Example:
+let n = 123;
+let s = String(n);
+console.log(s);
+console.log(typeof s);
+
+Output:
+123
+string
+```
+
+<b> Converting Different Data Types to Strings : </b>
+```bash
+1. Converting a Boolean to a String:
+
+Example:
+let bool = true;
+let strBool = String(bool);
+console.log(strBool);
+
+Output:
+true
+
+2. Converting an Array to a String:
+
+Example:
+let a = [1, 2, 3];
+let strArr = String(a);
+console.log(strArr);
+
+Output:
+1,2,3
+
+3. Converting an Object to a String:
+
+Example:
+let obj = { name: "Alice", age: 25 };
+let strObj = String(obj);
+console.log(strObj);
+
+Output:
+[object Object]
+
+4. Converting null and undefined to Strings:
+
+Example:
+let nullVal = null;
+let undefVal = undefined;
+console.log(String(nullVal));
+console.log(String(undefVal));
+
+Output:
+null
+undefined
+```
+
+### Type Coercion :
+Type coercion is the automatic conversion of one data type to another by JavaScript during operations. This is also known as implicit type casting.
+
+- Automatic Conversion: When required, the JavaScript automatically converts required data types.
+- Works with Three Types: String, Number, and Boolean coercion.
+- Can Lead to Unexpected Results: If they are not handled properly, they may cause unintended bugs.
+- Implicitly Occurs: Automatically converts the type of the value from one to another.
+
+<b> Examples of Type Coercion : </b>
+
+`1. String + Number :` JavaScript will automatically or implicitly convert the number to a string if there is the string present in the arithmetic operation.
+```bash
+let n = 5;
+let s = "5";
+let res = n + s;  // JavaScript converts num to string
+console.log(res); 
+console.log(typeof(res))
+
+- It occurs when the string is combined with the non-string using (+). JavaScript converts numbers and booleans into strings before concatenation.
+```
+
+`2. Boolean + Number :` JavaScript converts the boolean value into a number, true becomes 1 and false becomes 0, when we perform the arithmetic operations.
+```bash
+let bool = true;
+let n = 10;
+let res = bool + n;  // JavaScript converts boolean to number
+console.log(res);
+
+- JavaScript treats the true value as '1' and the false value as '0'.
+```
+
+`3. Comparison of Different Types :` JavaScript convert the two value of data type into the common type when we compare their values.
+```bash
+let s = "10";
+let n = 10;
+console.log(s == n);  // true, JavaScript converts str to number
+```
+
+`4. Boolean Context :` Javascript converts non-boolean value into the boolean value when the value is in the if statement.
+```bash
+let s = "";
+if (s) {
+    console.log("This won't print");  // Empty string is falsy
+} else {
+    console.log("This will print");  // Empty string is coerced to false
+}
+```
+<b> Common Issues of Type Coercion : </b>
+
+`1. Comparing Different Data Types :` Comparison Operator(= =), allows coercion due to which the unexpected conversions occur. To avoid this, we should use the strict equality(= = =) operator.
+```bash
+console.log(0 == "0"); 
+console.log(0 == false); 
+console.log(" " + 0 == 0);
+
+Output:
+true
+true
+true
+```
+`2. Operations on null and undefined :` Null and undefined behave unexpectedly.
+```bash
+console.log(null == undefined); 
+console.log(null === undefined); 
+console.log(null + 1);
+
+Output:
+utput
+true
+false
+1
+```
+`3. NaN Comparisons :` NaN is not equal to itself, so checking with isNaN() is the best way to detect it.
+```bash
+console.log(NaN == NaN); 
+console.log(isNaN(NaN));
+
+Output:
+false
+true
+```
+
+<b> To Avoid Type Coercion Issues :</b>
+
+```bash
+1. Use === Instead of == : When we use strict equality, instead of the comparison operator, it prevents unnecessary types of coercion.
+- === ensures no implicit type conversion occurs and both values must be of the same type.
+
+2. Use Explicit Conversion : Explicit conversion converts the value manually due to which there are fewer chances of errors in the code.
+- This ensures that you're working with the correct type, reducing the chance of errors during operations.
+
+3. Avoid False Value Confusion : Always check for null, undefined, or empty strings explicitly.
+- This ensures that only non-null and defined values are considered valid.
+
+4. Handle NaN Properly : Use isNaN() to check if a value is NaN instead of comparing it directly.
+- This ensures you're correctly detecting NaN and handling it appropriately.
+```
