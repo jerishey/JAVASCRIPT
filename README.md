@@ -1516,3 +1516,321 @@ true
 4. Handle NaN Properly : Use isNaN() to check if a value is NaN instead of comparing it directly.
 - This ensures you're correctly detecting NaN and handling it appropriately.
 ```
+
+## 5. JavaScript Control Flow Statements 
+Control flow statements in JavaScript control the order in which code is executed. These statements allow you to make decisions, repeat tasks, and jump between parts of a program based on specific conditions.
+
+### `1. if Statement :` 
+It is a conditional statement that determines whether a specific action or block of code will run based on a condition. If the condition is true, the code executes; if false, it does not.
+```bash
+Syntax:
+if (condition) {
+    // Code to be executed if the condition is true
+}
+
+Example:
+const age = 18;
+if (age >= 18) {
+    console.log("You are an adult.");
+}
+
+Explanation:
+- Checks if age is greater than or equal to 18.
+- Logs "You are an adult." if the condition is true.
+```
+### `2. if-else statement :` 
+The if-else statement allows you to execute one block of code if the condition is true and another block if the condition is false. It's a way to handle two possible outcomes based on a condition.
+```bash
+Syntax:
+if (condition)
+{
+    // Executes this block if
+    // condition is true
+}
+else
+{
+    // Executes this block if
+    // condition is false
+}
+
+Example:
+// JavaScript program to illustrate If-else statement
+let i = 10;
+
+if (i < 15)
+    console.log("i is less than 15");
+else
+    console.log("I am Not in if");
+```
+
+### `3. nested-if statement :` 
+JavaScript lets you put an if statement inside another if statement. This is called a nested if, where one if or else is inside another.
+```bash
+Syntax:
+if (condition1) 
+{
+   // Executes when condition1 is true
+   if (condition2) 
+   {
+      // Executes when condition2 is true
+   }
+}
+
+Example:
+// JavaScript program to illustrate nested-if statement
+let i = 10;
+
+if (i == 10) {  // First if statement
+    if (i < 15) {
+        console.log("i is smaller than 15");
+        // Nested - if statement
+        // Will only be executed if statement above
+        // it is true
+        if (i < 12)
+            console.log("i is smaller than 12 too");
+        else
+            console.log("i is greater than 15");
+    }
+}
+```
+
+### `4. if-else-if statement :` 
+The if-else-if ladder is used to check multiple conditions in sequence. Once a true condition is found, its block executes, and the rest are skipped.
+```bash
+Syntax:
+if (condition)
+    statement;
+else if (condition)
+    statement;
+.
+.
+else
+    statement;
+
+Example:
+// JavaScript program to illustrate nested-if statement
+let i = 20;
+if (i == 10)
+    console.log("i is 10");
+else if (i == 15)
+    console.log("i is 15");
+else if (i == 20)
+    console.log("i is 20");
+else
+    console.log("i is not present");
+```
+
+### `5. switch Statement :` 
+The switch statement evaluates an expression and executes code based on matching cases. It’s an efficient alternative to multiple if-else statements, improving readability when handling many conditions.
+```bash
+Syntax:
+switch (expression) {
+    case value1:
+        // Code block 1
+        break;
+    case value2:
+        // Code block 2
+        break;
+    // more cases
+    default:
+        // Default code block
+}
+
+Explanation:
+- Evaluation: The expression is evaluated once.
+- Comparison: The value of the expression is compared against each case.
+- Execution: The block under the matching case runs. If no match, the default block executes (if present).
+- Break: Stops further execution within the switch block.
+- Default: Runs if no cases match. It’s optional but provides a fallback option.
+```
+<b> Example: </b>
+```bash
+let day = 3;
+let dayName;
+
+switch (day) {
+    case 1:
+        dayName = "Monday";
+        break;
+    case 2:
+        dayName = "Tuesday";
+        break;
+    case 3:
+        dayName = "Wednesday";
+        break;
+    case 4:
+        dayName = "Thursday";
+        break;
+    case 5:
+        dayName = "Friday";
+        break;
+    case 6:
+        dayName = "Saturday";
+        break;
+    case 7:
+        dayName = "Sunday";
+        break;
+    default:
+        dayName = "Invalid day";
+}
+
+console.log(dayName);
+
+Explanation:
+- Day is set to 3.
+- The switch statement evaluates day.
+- Since day is 3, the case 3 the block is executed, assigning "Wednesday" to dayName.
+- The break statement ends the switch statement, preventing execution from continuing into other cases.
+```
+
+### `6. Break Keyword :` 
+The break keyword is used to terminate the execution of a loop or a switch statement. Once a break is encountered, the program will exit the current block, and no further code within the block will be executed.
+```bash
+let day = 'Monday';
+
+switch (day) {
+    case 'Monday':
+        console.log("Start of the week!");
+        break;
+    default:
+        console.log("Invalid day.");
+}
+
+Explanation:
+- Since day is set to 'Monday', the first case is matched, and "Start of the week!" is logged.
+- The break statement then stops further execution, so the default case is not executed.
+```
+
+### `7. Default Keyword :` 
+The default keyword in a switch statement is used as a fallback option when none of the case labels match the evaluated value. It functions similarly to an else in an if-else chain, ensuring that a default action is executed when no specific conditions are met.
+
+- Fallback Action: If no case matches, the code within the default block is executed, preventing unexpected behavior.
+- Optional: The default case is optional and can be omitted if not needed.
+- Position: The position of the default case in a switch statement doesn't affect its behavior. It only runs if no previous case matches, regardless of where it’s placed.
+
+```bash
+let day = 'Holiday';
+let message;
+
+switch (day) {
+    case 'Monday':
+        message = "Start of the week!";
+        break;
+    case 'Tuesday':
+        message = "Second day of the week.";
+        break;
+    default:  
+        message = "Day not recognized.";  // Fallback action (if no match)
+        break;
+    case 'Friday':
+        message = "End of the workweek!";
+        break;
+}
+
+console.log(message);
+
+Example:
+- Switch: It checks day but doesn’t match any cases.
+- Fallback Action: The default case runs, setting message to "Day not recognized.".
+- Position of Default: The default case is placed before 'Friday', but its position doesn't affect its behavior; it only runs when no other case matches.
+```
+### `8. Difference Between if-Else and Switch Statement`
+| Feature           | if-else                                        | switch                                            |
+| ----------------- | ---------------------------------------------- | ------------------------------------------------- |
+| Purpose           | Used for complex conditions and ranges.        | Used for exact matches of a single value.         |
+| Performance       | Slower performance with many conditions.       | Faster performance with multiple values to check. |
+| Flexibility       | More flexible for complex scenarios.           | Less flexible, limited to specific conditions.    |
+| Flow Control      | No fall-through; moves to the next else block. | Can have fall-through if `break` is omitted.      |
+| Default Condition | Uses `else` for the default condition.         | Has a `default` case to handle unmatched values.  |
+
+
+## 6. JavaScript Looping Statements
+Loops in JavaScript allow a block of code to run multiple times as long as a given condition is satisfied. They help reduce repetition and make programs more efficient and organized.
+
+- Loops continue running until the condition becomes false.
+- They are useful for iterating over arrays, strings, and ranges of values.
+
+### `1. For Loop :` 
+JavaScript for loop is a control flow statement that allows code to be executed repeatedly based on a condition. It consists of three parts: initialization, condition, and increment/decrement.
+
+```bash
+Syntax:
+for (statement 1 ; statement 2 ; statement 3){    code here...}
+
+Explanation:
+- Statement 1: It is the initialization of the counter. It is executed once before the execution of the code block.
+- Statement 2: It defines the testing condition for executing the code block
+- Statement 3: It is the increment or decrement of the counter & executed (every time) after the code block has been executed.
+
+Example:
+// for loop begins when x=2
+// and runs till x <= 4
+for (let x = 2; x <= 4; x++) {
+    console.log("Value of x:" + x);
+}
+```
+
+`Flow chart :` This flowchart shows the working of the for loop in JavaScript. You can see the control flow in the For loop.
+<img src="img/Forloop.webp"> </img>
+
+```bash
+Explanation:
+1. Statement 1: Initializing Counter Variable : Statement 1 is used to initialize the counter variable. A counter variable is used to keep track of the number of iterations in the loop. You can initialize multiple counter variables in statement 1.
+
+Example: 
+let x = 2;
+
+for (; x <= 4; x++) {
+    console.log("Value of x:" + x);
+}
+
+2. Statement 2: Testing Condition : This statement checks the boolean value of the testing condition. If the testing condition is true, the for loop will execute further, otherwise loop will end and the code outside the loop will be executed. It is executed every time the for loop runs before the loop enters its body.
+- This is also an optional statement and JavaScript treats it as true if left blank. If this statement is omitted, the loop runs indefinitely if the loop control isn't broken using the break statement.
+
+Example:
+let x = 2;
+for (; ; x++) {
+    console.log("Value of x:" + x);
+    break;
+}
+
+3. Statement 3: Updating Counter Variable : It is a controlled statement that controls the increment/decrement of the counter variable. It is also optional by nature and can be done inside the loop body.
+
+Example:
+const subjects = ["Maths", "Science", "Polity", "History"];
+let i = 0;
+let len = subjects.length;
+let g = "";
+for (; i < len;) {
+    g += subjects[i];
+    //can be increased inside loop
+    i++;
+}
+console.log(g)
+```
+
+### `2. While Loop :` 
+The while loop executes a block of code as long as a specified condition is true. In JavaScript, this loop evaluates the condition before each iteration and continues running as long as the condition remains true.
+
+```bash
+Syntax:
+while (condition) {     
+Code block to be executed 
+}
+
+Example:
+let arr = [10, 20, 30, 40];
+let i = 0;
+while (i < arr.length) {
+  console.log(arr[i]);
+  i++;
+}
+
+Output:
+10
+20
+30
+40
+```
+`Flow Chart :`
+<img src=img\While-loop.webp></img>
