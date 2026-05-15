@@ -1827,3 +1827,367 @@ Explanation:
 | Code Control       | The block of code is controlled at the end.               | The block of code is controlled at the beginning.    |
 | Syntax             | `do { } while(condition);`                                | `while(condition) { }`                               |
 | Semicolon          | Ends with a semicolon `;`                                 | No semicolon after condition                         |
+
+
+## 7. Scope of Variables in JavaScript
+Scope in JavaScript defines where a variable can be accessed or used within a program. It controls the visibility and lifetime of variables across different parts of the code.
+```bash
+1. Determines the accessibility of variables in different parts of the program.
+2. Helps prevent conflicts by restricting variable usage to specific areas.
+3. Improves code organization and readability.
+4. Defines the lifetime of variables during program execution.
+5. Main types include global scope, local (function) scope, and block scope.
+```
+
+### There are several types of scopes of a variable.
+`1. Global and Local Scope :`
+```bash
+1. Global Scope : A global variable refers to a variable that is declared outside any function or block, so it can be used anywhere in the program, both inside functions and in the main code.
+
+Example:
+// Global Variable accessed from within a function 
+const x = 10;
+
+function fun1() {
+    console.log(x);
+}
+
+fun1();
+
+- The variable x is declared in the global scope and can be accessed inside functions. However, global scope behavior may vary depending on the execution environment (e.g., browser vs module).
+
+2. Local Scope : A local variable is a variable declared inside a function, making it accessible only within that function. It cannot be used outside the function. 
+Functions are objects and can be assigned to variables.
+
+Example:
+function fun2(){
+    
+    // This variable is local to fun2() and 
+    // cannot be accessed outside this function
+    let x = 10;
+    console.log(x);
+}
+
+fun2();
+
+- Here, the code defines a function fun2 with a local variable x, which is accessible only inside the function, and prints its value when the function is called.
+```
+
+`2. Block and Lexical Scope :`
+```bash
+1. Block Scope : Block scope in JavaScript means variables declared with let or const inside { } are accessible only within that block, and accessing them before declaration (TDZ) causes a ReferenceError.
+
+Example:
+{
+    
+    // Var can Accessible inside & outside the block scope 
+    var x = 10;
+    
+    // let , const Accessible only inside the block scope
+    const y = 20;
+    let z = 30;
+    
+    console.log(x);
+    console.log(y);
+    console.log(z);
+}
+
+console.log(x);
+
+- Variables declared with var do not have block scope. A var variable declared inside a function is accessible throughout that entire function,
+regardless of any blocks (like if statements or for loops) within the function.  If var is declared used outside of any function, it creates a global variable.
+
+2. Lexical Scope : The variable is declared inside the function and can only be accessed inside that block or nested block is called lexical scope.
+
+Example:
+function func1() {
+    const x = 10;
+
+    function func2() {
+        const y = 20;
+        console.log(`${x} ${y}`);
+    }
+
+    func2();
+}
+
+func1();
+
+- This code demonstrates lexical scope, where func2 accesses the variable x from func1 and prints “10 20”.
+```
+
+`3. Modular Scope :` Module scope refers to variables and functions that are accessible only within a specific JavaScript module. It helps keep code organized and prevents variables from affecting the global scope.
+```bash
+Example:
+// math.js (module file)
+export const number = 10;
+
+export function add(a, b) {
+  return a + b;
+}
+
+// main.js (another file)
+import { number, add } from "./math.js";
+
+console.log(number);      // 10
+console.log(add(5, 3));   // 8
+
+- math.js has variables and functions inside its module scope.
+- They are only accessible in other files when we use export and import.
+```
+
+## 8. Functions in JavaScript
+Functions in JavaScript are reusable blocks of code designed to perform specific tasks. They allow you to organize, reuse, and modularize code. It can take inputs, perform actions, and return outputs.
+
+`1. Understanding Functions :` In functions, parameters are placeholders defined in the function, while arguments are the actual values you pass when calling the function.
+```bash
+function greet(name) {   // 'name' is a parameter
+  console.log("Hello " + name);
+}
+
+greet("Alice");  // "Alice" is the argument
+
+- Parameter: name (placeholder inside the function).
+- Argument: "Alice" (real value given at call time).
+```
+
+`2. Default Parameters :`
+- Default parameters are used when no argument is provided during the function call.
+- If no value is passed, the function automatically uses the default value.
+```bash
+function greet(name = "Guest") {
+  console.log("Hello, " + name);
+}
+
+greet();
+greet("Aman");
+```
+
+`3. Return Statement :`
+- The return statement is used to send a result back from a function.
+- When return executes, the function stops running at that point.
+- The returned value can be stored in a variable or used directly.
+```bash
+function add(a, b) {
+  return a + b; // returns the sum
+}
+
+let result = add(5, 10);
+console.log(result);
+```
+
+### Type of Functions
+`1. Named Function :` A function that has its own name when declared. It’s easy to reuse and debug because the name shows up in error messages or stack traces.
+```bash
+function greet() {
+  return "Hello!";
+}
+console.log(greet());
+```
+
+`2. Anonymous Function :` A function that does not have a name. It is usually assigned to a variable or used as a callback. Since it has no name, it cannot be called directly.
+```bash
+const greet = function() {
+  return "Hi there!";
+};
+console.log(greet());
+```
+
+`3. Function Expression :` When you assign a function (can be named or anonymous) to a variable. The function can then be used by calling that variable.
+```bash
+const add = function(a, b) {
+  return a + b;
+};
+console.log(add(2, 3));
+```
+
+`4. Arrow Function (ES6) :` A new way to write functions using the => syntax. They are shorter and do not have their own this binding, which makes them useful in some cases.
+```bash
+const square = n => n * n;
+console.log(square(4));
+```
+
+`5. Immediately Invoked Function Expression (IIFE) :` Immediately Invoked Function Expressions (IIFE) are JavaScript functions that are executed immediately after they are defined. They are typically used to create a local scope for variables to prevent them from polluting the global scope.
+```bash
+Syntax:
+
+(function (){ 
+// Function Logic Here. 
+})();
+
+Example:
+(function() {
+    // IIFE code block
+    var localVar = 'This is a local variable';
+    console.log(localVar); // Output: This is a local variable
+})();
+
+Explanation:
+- The function is wrapped in parentheses (function() { ... }), followed by () to immediately invoke it.
+- IIFEs are commonly used to create private scope in JavaScript, allowing variables and functions to be encapsulated and inaccessible from outside the function.
+```
+`Use Cases Of IIFE :`
+```bash
+1. Avoid polluting the global namespace.
+2. To create closures in JavaScript.
+3. IIFE is used to create private and  public variables and methods.
+4. It is used to execute the async and await function.
+5. It is used to work with require function.
+```
+
+`6. Callback Functions :` A callback function is a function that is passed as an argument to another function and executed later.
+
+- A function can accept another function as a parameter.
+- Callbacks allow one function to call another at a later time.
+- A callback function can execute after another function has finished.
+```bash
+function greet(name, callback) {
+    console.log("Hello, " + name);
+    callback();
+}
+
+function sayBye() {
+    console.log("Goodbye!");
+}
+
+greet("Nitish", sayBye);
+
+- Here, sayBye() is passed as a callback to greet(), which executes after the greeting.
+```
+
+`Use of Callbacks in JavaScript`
+```bash
+1. Asynchronous Operations → Used to run code after tasks like API calls or timers are completed.
+2. Event Handling → Used to respond to events such as button clicks or key presses.
+3. Array Methods → Used with functions like map(), filter(), and forEach().
+4. Code Reusability → Allows functions to be reused with different actions.
+5. Sequential Execution → Helps execute tasks in a specific order.
+6. Error Handling → Used to handle errors in asynchronous operations.
+```
+
+`Problems with Callbacks`
+```bash
+1. Callback Hell → Too many nested callbacks make the code difficult to read and manage.
+2. Hard to Debug → Finding and fixing errors becomes complicated.
+3. Poor Readability → Deeply nested code reduces code clarity.
+4. Error Handling Issues → Managing errors across multiple callbacks is difficult.
+5. Complex Maintenance → Large callback-based programs are harder to update and maintain.
+6. Inversion of Control → Control of execution is passed to another function, which may cause unexpected behavior.
+```
+
+`7. Constructor Function :` A special type of function used to create multiple objects with the same structure. It’s called with the new keyword.
+```bash
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const user = new Person("Nitish", 22);
+console.log(user.name);
+```
+
+`8. Async Function :` Functions that handle asynchronous tasks. Declared with async, they return a Promise, and you can use await inside them to pause until another Promise resolves.
+```bash
+async function fetchData() {
+  return "Data fetched!";
+}
+fetchData().then(console.log);
+```
+
+`9. Generator Function :` Declared with an asterisk *, these functions can pause execution using yield and resume later. Useful for lazy loading values or handling iterators.
+```bash
+function* numbers() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+const gen = numbers();
+console.log(gen.next().value); 
+console.log(gen.next().value);
+```
+
+`10. Recursive Function :` A function that calls itself until a condition is met. Very useful for problems like factorial, Fibonacci, or tree traversals.
+```bash
+function factorial(n) {
+  if (n === 0) return 1;
+  return n * factorial(n - 1);
+}
+console.log(factorial(5));
+```
+
+`11. Higher-Order Function :` A function that either takes another function as a parameter or returns another function. These are common in JavaScript (e.g., map, filter, reduce).
+```bash
+function multiplyBy(factor) {
+  return function(num) {
+    return num * factor;
+  };
+}
+
+const double = multiplyBy(2);
+console.log(double(5));
+```
+
+`12. Nested Functions :` A nested function (also known as an inner function) is a function that is declared within another function (known as the outer function). The inner function has access to the variables of its outer function, forming a lexical scope chain.
+```bash
+function outer() {
+    console.log('This is the outer function')
+    function inner() {
+        console.log("This is the inner function.")
+    }
+    inner();
+}
+outer();
+
+Output:
+This is the outer function
+This is the inner function.
+
+Explanation:
+- The outer() function is defined to hold the main logic of this example.
+- Inside outer(), there’s a nested function inner(), which can perform actions like logging messages.
+- When outer() is called, it also calls inner(), so both functions run in sequence.
+- Calling outer() first logs "This is the outer function" and then calls inner(), logging "This is the inner function."
+- The inner() function is nested inside outer() and can only be called from within outer(), showing how nesting works with scope.
+```
+
+`How nested functions work in JavaScript`
+```bash
+1. A nested function is a function defined inside another function in JavaScript.
+2. The inner function has access to the variables and parameters of the outer function.
+3. The inner function can be called only from within the outer function.
+4. Nested functions allow for better organization and code reuse.
+5. They enable closures, where the inner function can "remember" and access variables from the outer function even after the outer function has finished executing.
+```
+
+`Benefits of Using Nested Functions`
+```bash
+1. Encapsulation: Inner functions help in structuring the code by keeping helper functions private and preventing unwanted access.
+2. Code Organization: They help break down large functions into smaller, manageable units.
+3. Access to Outer Variables: Inner functions can access the variables and parameters of their outer function due to lexical scoping.
+4. Avoiding Global Pollution: Since inner functions are not accessible outside their outer function, they do not interfere with the global scope.
+```
+
+`Limitations of Nested Functions`
+```bash
+1. Memory Usage: Since inner functions maintain references to outer function variables, they may consume memory even after the outer function execution completes.
+2. Performance Impact: Defining a function inside another function means a new function is created every time the outer function is called, which can lead to performance inefficiencies in high-frequency executions.
+2. Code Complexity: Excessive nesting can make the code harder to read and debug.
+```
+
+`13. Pure Functions :` Pure functions return the same output for the same inputs and do not produce side effects. They do not modify state outside their scope, such as modifying global variables, changing the state of objects passed as arguments, or performing I/O operations.
+```bash
+function pureAdd(a, b) {
+    return a + b;
+}
+
+console.log(pureAdd(2, 3));
+```
+
+`14. Rest Parameter Function :` Uses ... to collect all remaining arguments into an array. Very useful when you don’t know how many arguments will be passed.
+```bash
+function sum(...nums) {
+  return nums.reduce((a, b) => a + b, 0);
+}
+console.log(sum(1, 2, 3, 4));
+```
