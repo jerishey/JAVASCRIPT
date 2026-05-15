@@ -1755,12 +1755,14 @@ JavaScript for loop is a control flow statement that allows code to be executed 
 
 ```bash
 Syntax:
-for (statement 1 ; statement 2 ; statement 3){    code here...}
+for (initialization; condition; increment/decrement) {
+    // code here
+}
 
 Explanation:
-- Statement 1: It is the initialization of the counter. It is executed once before the execution of the code block.
-- Statement 2: It defines the testing condition for executing the code block
-- Statement 3: It is the increment or decrement of the counter & executed (every time) after the code block has been executed.
+1. Initialization → Runs once at the beginning.
+2. Condition → Checks whether the loop should continue.
+3. Increment/Decrement → Updates the loop variable after each iteration.
 
 Example:
 // for loop begins when x=2
@@ -1769,53 +1771,13 @@ for (let x = 2; x <= 4; x++) {
     console.log("Value of x:" + x);
 }
 ```
-
-`Flow chart :` This flowchart shows the working of the for loop in JavaScript. You can see the control flow in the For loop.
-<img src="img/Forloop.webp"> </img>
-
-```bash
-Explanation:
-1. Statement 1: Initializing Counter Variable : Statement 1 is used to initialize the counter variable. A counter variable is used to keep track of the number of iterations in the loop. You can initialize multiple counter variables in statement 1.
-
-Example: 
-let x = 2;
-
-for (; x <= 4; x++) {
-    console.log("Value of x:" + x);
-}
-
-2. Statement 2: Testing Condition : This statement checks the boolean value of the testing condition. If the testing condition is true, the for loop will execute further, otherwise loop will end and the code outside the loop will be executed. It is executed every time the for loop runs before the loop enters its body.
-- This is also an optional statement and JavaScript treats it as true if left blank. If this statement is omitted, the loop runs indefinitely if the loop control isn't broken using the break statement.
-
-Example:
-let x = 2;
-for (; ; x++) {
-    console.log("Value of x:" + x);
-    break;
-}
-
-3. Statement 3: Updating Counter Variable : It is a controlled statement that controls the increment/decrement of the counter variable. It is also optional by nature and can be done inside the loop body.
-
-Example:
-const subjects = ["Maths", "Science", "Polity", "History"];
-let i = 0;
-let len = subjects.length;
-let g = "";
-for (; i < len;) {
-    g += subjects[i];
-    //can be increased inside loop
-    i++;
-}
-console.log(g)
-```
-
 ### `2. While Loop :` 
 The while loop executes a block of code as long as a specified condition is true. In JavaScript, this loop evaluates the condition before each iteration and continues running as long as the condition remains true.
 
 ```bash
 Syntax:
 while (condition) {     
-Code block to be executed 
+// Code block to be executed 
 }
 
 Example:
@@ -1832,5 +1794,36 @@ Output:
 30
 40
 ```
-`Flow Chart :`
-<img src=img\While-loop.webp></img>
+
+### `3. do...while Loop :`
+A do...while loop in JavaScript is used to execute a block of code repeatedly while a condition is true. In this loop, the code runs first and the condition is checked afterward. Therefore, the loop executes at least once even if the condition is false.
+```bash
+Syntax:
+do {
+    // code here
+} while (condition);
+
+Example:
+let x = 1;
+
+do {
+    console.log("Value of x: " + x);
+    x++;
+} while (x <= 3);
+
+Explanation:
+- let x = 1; → Initializes the variable x with value 1.
+- do { ... } → The code inside the block runs first.
+- console.log("Value of x: " + x); → Prints the current value of x.
+- x++; → Increases the value of x by 1.
+- while (x <= 3); → Checks the condition. The loop continues while x is less than or equal to 3.
+```
+#### `Difference Between do...While and while loop :`
+| Feature            | do...while Loop                                           | while Loop                                           |
+| ------------------ | --------------------------------------------------------- | ---------------------------------------------------- |
+| Control Type       | It is an exit-controlled loop.                            | It is an entry-controlled loop.                      |
+| Condition Check    | Condition is checked after executing the loop body.       | Condition is checked before executing the loop body. |
+| Minimum Iterations | Executes at least one time irrespective of the condition. | May execute zero times depending on the condition.   |
+| Code Control       | The block of code is controlled at the end.               | The block of code is controlled at the beginning.    |
+| Syntax             | `do { } while(condition);`                                | `while(condition) { }`                               |
+| Semicolon          | Ends with a semicolon `;`                                 | No semicolon after condition                         |
