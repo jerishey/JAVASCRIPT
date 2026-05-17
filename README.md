@@ -2191,3 +2191,437 @@ function sum(...nums) {
 }
 console.log(sum(1, 2, 3, 4));
 ```
+
+## 9. Hoisting
+Hoisting refers to the behavior where JavaScript moves the declarations of variables, functions, and classes to the top of their scope during the compilation phase. This can sometimes lead to surprising results, especially when using var, let, const, or function expressions.
+```bash
+1. Hoisting applies to variable and function declarations.
+2. Initializations are not hoisted, they are only declarations.
+3. 'var' variables are hoisted with undefined, while 'let' and 'const' are hoisted but remain in the Temporal Dead Zone until initialized.
+```
+
+### `Temporal Dead Zone (TDZ)`
+The Temporal Dead Zone (TDZ) is the period in JavaScript between entering a scope and the initialization of variables declared with let or const, during which accessing them results in an error.
+```bash
+1. Variables declared with let and const are hoisted but not initialized.
+2. Accessing these variables before their declaration throws a ReferenceError.
+3. Initialization occurs only when execution reaches the declaration line.
+4. TDZ exists only within the scope where the variable is declared.
+5. It applies only to let and const, not to var (which is initialized as undefined).
+```
+<b>`Example:`</b>
+```bash
+hello(); // TypeError: hello is not a function
+var hello = function() {
+    console.log("Hi!");
+};
+
+- The variable hello is hoisted, but it is not initialized until the assignment line is reached since it holds a function expression. Thus, calling hello() before its initialization throws a TypeError.
+```
+
+### `Types of Hoisting`
+Hoisting in JavaScript refers to moving declarations to the top of their scope before code execution.
+
+`1. Variable Hoisting with var :` When you use var to declare a variable, the declaration is hoisted to the top, but its value is not assigned until the code execution reaches the variable’s initialization. This results in the variable being assigned undefined during the hoisting phase.
+```bash
+console.log(a); // undefined
+var a = 5;
+
+- The declaration var a is hoisted to the top, but a is initialized with undefined. Hence, logging results in undefined.
+```
+
+`2. Variable Hoisting with let and const :` Unlike var, let and const are also hoisted, but they remain in a Temporal Dead Zone (TDZ) from the start of the block until their declaration is encountered. Accessing them before their declaration will throw a ReferenceError.
+```bash
+console.log(b); // ReferenceError: Cannot access 'b' before initialization
+let b = 10;
+
+- The variable is hoisted, but it’s in the Temporal Dead Zone (TDZ) until the declaration line is executed.
+```
+
+`3. Function Declaration Hoisting :` Function declarations are hoisted with both their name and the function body. This means the function can be called before its definition in the code.
+```bash
+greet(); // "Hello, Mahima!"
+function greet() {
+    console.log("Hello, Mahima!");
+}
+
+- The function declaration is hoisted, and the entire function definition is available before its position in the code.
+```
+
+`4. Function Expression Hoisting :` Function expressions are treated like variable declarations. The variable itself is hoisted, but the function expression is not assigned until the line of execution. This means calling the function before its assignment will result in an error.
+```bash
+hello(); // TypeError: hello is not a function
+var hello = function() {
+    console.log("Hi!");
+};
+
+- The variable hello is hoisted, but since it's a function expression, it’s not initialized until the line is executed.
+```
+
+`5. Hoisting with let and const in Functions :` Variables declared with let and const inside a function are hoisted to the top of the function's scope, but they remain in the TDZ. This prevents access to them before they are initialized.
+```bash
+function test() {
+    console.log(x); // ReferenceError: Cannot access 'x' before initialization
+    let x = 50;
+}
+test();
+
+- The variable x is hoisted inside the function but cannot be accessed until its declaration line due to the TDZ.
+```
+
+`6. Hoisting with Classes :` Classes are hoisted, but they cannot be accessed before they are declared, resulting in a ReferenceError.
+```bash
+const obj = new MyClass(); // ReferenceError
+class MyClass {
+    constructor() {
+        this.name = "Nitish Kumar";
+    }
+}
+
+- Although the class MyClass is hoisted, it cannot be accessed before its declaration due to the TDZ, which is why the code throws a ReferenceError.
+```
+
+`7. Re-declaring Variables with var :` With var, you can redeclare a variable within the same scope. This is a unique behavior compared to let and const.
+```bash
+var a = 10;
+var a = 20; // No error
+console.log(a); // 20
+
+- With var, the second declaration overwrites the first one without throwing an error.
+```
+
+`8. Accessing Variables Declared Later in Loops :` When using var in loops, the loop variable is hoisted to the function or global scope, which can cause unexpected behavior. If you use let, the variable is block-scoped and behaves as expected.
+```bash
+for (var i = 0; i < 3; i++) {
+    setTimeout(function() {
+        console.log(i); // 3, 3, 3
+    }, 100);
+}
+
+- The var i is hoisted, and all setTimeout functions share the same i reference, which results in the value 3 after the loop finishes.
+```
+
+`9. Using Hoisted Functions with Parameters :` Functions can be hoisted with their parameters, but any parameters passed to the function are still determined by the invocation, not by the hoisting.
+```bash
+test(10); // 10
+function test(num) {
+    console.log(num);
+}
+
+- The entire function, including its parameters, is hoisted and available for use before the function's declaration in the code.
+```
+
+`10. Hoisting in Nested Functions :` Hoisting works within nested functions as well. Variables declared with var inside a function are hoisted to the top of that function scope.
+```bash
+function outer() {
+    console.log(a); // undefined
+    var a = 5;
+    function inner() {
+        console.log(b); // undefined
+        var b = 10;
+    }
+    inner();
+}
+outer();
+
+- Both a and b are hoisted within their respective scopes (outer and inner functions), but their values are not set until the code execution reaches the initialization lines.
+```
+
+## 10. Closure
+A closure is a function that remembers and accesses variables from its outer scope even after the outer function has finished executing.
+
+- Retains access to outer function variables.
+- Preserves the lexical scope.
+- Allows data encapsulation and privacy.
+- Commonly used in callbacks and asynchronous code.
+```bash
+function outer() {
+    let outerVar = "I'm in the outer scope!";
+    function inner() {
+        console.log(outerVar); 
+        outerVar = "Updated"
+    }
+    return inner;  
+}
+const closure = outer(); 
+closure();
+closure();
+
+- The function inner() forms a closure by retaining access to outerVar, which is a variable in the scope of outer().
+- Even though outer() has completed execution, inner() still has access to outerVar due to the closure.
+```
+
+`1. Lexical Scoping :` Closures are rely on lexical scoping, which means a function’s scope is determined by where it is defined, not where it is executed, allowing inner functions to access variables from their outer function.
+- Scope is fixed at function definition time.
+- Inner functions can access outer function variables.
+- Enables closures to “remember” their environment.
+
+`2. Private Variables :` Closures allow a function to keep variables private and accessible only within that function, which is commonly used in modules to protect data from being accessed or modified by other parts of the program.
+- Helps achieve data encapsulation
+- Creates private variables
+- Prevents accidental data modification
+- Commonly used in module patterns
+```bash
+function counter() {
+    
+    // Private variable
+    let count = 0; 
+    
+    return function () {
+        
+        // Access and modify the private variable
+        count++;
+        return count;
+    };
+}
+
+const increment = counter();
+console.log(increment());
+console.log(increment());
+console.log(increment());
+```
+
+`3. Closures and IIFE :` IIFEs (Immediately Invoked Function Expressions) use closures to encapsulate data within a function, keeping it private and preventing access from the outside, which helps create self-contained modules.
+- Data is scoped to the IIFE.
+- Prevents global namespace pollution.
+- Uses closures for data privacy.
+- Useful for creating modular code.
+```bash
+const counter = (function () {
+    let count = 0;
+
+    return {
+        increment: function () {
+            count++;
+            console.log(count);
+        },
+        reset: function () {
+            count = 0;
+            console.log("Counter reset");
+        },
+    };
+})();
+
+counter.increment(); 
+counter.increment(); 
+counter.reset();
+```
+
+`4. Closure and setTimeout :` Closures are helpful in asynchronous programming because they preserve access to variables even after a function has finished executing, which is essential for delayed operations like timers or server requests.
+- Retains state for delayed execution.
+- Works well with callbacks and promises.
+- Useful with timers (setTimeout, setInterval).
+- Helps manage async data flow.
+```bash
+function createTimers() {
+    for (let i = 1; i <= 3; i++) {
+        setTimeout(function () {
+            console.log(`Timer ${i}`);
+        }, i * 1000);
+    }
+}
+createTimers();
+```
+
+`5. Closures with this keyword :` Closures can be confusing with the this keyword because this is determined by how a function is called, not where it is defined, so inside a closure it may not refer to the expected object.
+- this is not lexically scoped (except in arrow functions).
+- Its value depends on the calling context.
+- Closures don’t change how this works.
+- Arrow functions inherit this from their surrounding scope.
+```bash
+function Person(name) {
+    this.name = name;
+    
+    this.sayName = function () {
+        console.log(this.name);
+    };
+
+    setTimeout(function () {
+        console.log(this.name); 
+        // Undefined because 'this' refers to global object
+    }.bind(this), 1000); 
+    // Fix with bind
+}
+
+const G = new Person("Nitish");
+G.sayName();
+```
+
+`6. Function Currying in JavaScript :` Function currying is a technique that transforms a function with multiple arguments into a sequence of functions that each take one argument at a time, using closures to remember previously passed values.
+- Breaks a multi-argument function into unary functions.
+- Uses closures to retain earlier arguments.
+- Enables partial application of functions.
+- Helps create reusable and specialized functions.
+```bash
+// Normal Function
+// function add(a, b) {
+//     return a + b;
+// }
+// console.log(add(2, 3)); 
+
+// Function Currying
+function add(a) {
+    return function(b) {
+        return a + b;
+    };
+}
+
+const addTwo = add(2);  // First function call with 2
+console.log(addTwo(3));  
+console.log(addTwo(4));
+```
+
+## 11. Higher Order Functions
+A higher-order function is a function that does one of the following:
+- Takes another function as an argument.
+- Returns another function as its result.
+```bash
+function fun() {
+    console.log("Hello, World!");
+}
+function fun2(action) {
+    action();
+    action();
+}
+
+fun2(fun);
+
+- fun2 is a higher-order function because it takes another function (action) as an argument.
+- It calls the action function twice.
+```
+
+`Use cases of higher order functions`
+
+`1. Passing Functions as Arguments`
+```bash
+function greet(name, callback) {
+    console.log("Hello, " + name);
+    callback();
+}
+
+function sayGoodbye() {
+    console.log("Goodbye!");
+}
+
+greet("Ajay", sayGoodbye);
+
+Explanation:
+1. Function as Argument: greet accepts another function (e.g., sayGoodbye) as a callback, demonstrating the ability to pass functions as arguments.
+2. Sequence Control: It first logs a greeting message and then executes the callback, showing how actions can be performed in a specific order.
+3. Modularity and Reusability: By separating the greeting and goodbye actions, the pattern allows flexibility and reusability, enabling different callbacks to be passed as needed.
+```
+
+`2. Returning Functions from Functions :` Higher-order functions can also return a function. This enables the creation of more dynamic behavior
+```bash
+function mul(factor) {
+    return function(num) {
+        return num * factor;
+    };
+}
+
+const mul2 = mul(2);
+console.log(mul2(5));
+const mul3 = mul(3);
+console.log(mul3(5)); 
+
+Explanation:
+1. Function Factory: mulBy returns a new function based on the provided factor, demonstrating the ability to create dynamic, parameterized functions.
+2. Closure in Action: The returned function uses the captured factor to perform multiplication, showcasing the power of closures to retain access to external variables.
+3. Reusability and Customization: This pattern simplifies creating reusable multipliers (e.g., mul2, mul3), enabling efficient and customizable solutions with minimal effort.
+```
+
+`Advanced Techniques with Higher Order Functions`
+
+`1. Function Composition :` Function composition is the process of combining multiple functions to create a new function. The composed function applies multiple operations in sequence.
+```bash
+function add(x) {
+    return x + 2;
+}
+function mul(x) {
+    return x * 3;
+}
+
+function compose(f, g) {
+    return function(x) {
+        return f(g(x));
+  };
+}
+var res = compose(add, mul)(4);
+console.log(res);
+
+Explanation:
+- compose combines add and multiply, so the output of multiply is passed as input to add.
+- The result of compose(add, mul)(4) is 14 because 4 is first multiplied by 3 and then 2 is added.
+```
+
+`2. Currying :` Currying is used in JavaScript to break down complex function calls into smaller, more manageable steps. It transforms a function with multiple arguments into a series of functions, each taking a single argument.
+
+- It converts a function with multiple parameters into a sequence of functions.
+- Each function takes a single argument and returns another function until all arguments are received.
+- Helps in functional programming by enabling function reusability and composition.
+```bash
+// Normal Function
+// function add(a, b) {
+//     return a + b;
+// }
+// console.log(add(2, 3)); 
+
+// Function Currying
+function add(a) {
+    return function(b) {
+        return a + b;
+    }
+}
+
+const addTwo = add(5);  // First function call with 5
+console.log(addTwo(4));
+
+Explanation:
+1. Normal Function: Directly takes two arguments (a and b) and returns their sum.
+2. Function Currying: Breaks the add function into two steps. First, it takes a, and then, when calling addTwo(4), it takes b and returns the sum.
+```
+
+`How Currying Works in JavaScript? :` Currying function in the JavaScript can be done manually, but it can also be done using the closure. Below it is shown that how currying function works.
+```bash
+1. Creating the First Function: The first function takes the first argument and gives back a new function to take the next one.
+2. Returning a New Function: The returned function takes the next argument and keeps going until all the arguments are given.
+3. Returning the Result: Once all the arguments are provided, the final result is calculated and returned.
+```
+
+`When to Use Currying in JavaScript? :` In JavaScript, currying function is used in the following cases:
+```bash
+1. Partial Application: In the partial application we set some arguments in advance in the function and call it later with the remaining arguments.
+2. Higher-Order Functions: When one function takes the other functions as arguments (eg: map, filter, reduce) in that case we can use the currying function to manage the arguments more effectively.
+3. Functional Programming: Where functions are treated as important and focus is on not changing data and combining functions in those cases currying works perfectly.
+```
+
+`3. Memoization:` Memoization is a technique for speeding up applications by caching the results of expensive function calls and returning them when the same inputs are used again.
+- Expensive Function Calls: Time and memory are the two most important resources in computer applications. As a result, an expensive function call is one that consumes large amounts of these two resources due to extensive calculation during execution.
+- Cache: A cache is just a temporary data store that stores data in order to serve future requests for that data more quickly.
+
+```bash
+function memoize(func) {
+    var cache = {};
+    return function (arg) {
+        if (arg in cache) {
+            return cache[arg];
+        } else {
+            var res = func(arg);
+            cache[arg] = res;
+            return res;
+        }
+    };
+}
+function slow(num) {
+    console.log("Computing...");
+    return num * 2;
+}
+
+var fast = memoize(slow);
+console.log(fast(5)); // Computing... 10
+console.log(fast(5)); // 10 (cached)
+
+Explanation:
+- memoize caches the results of slowFunction calls. The second time fast(5) is called, the result is fetched from the cache, avoiding recomputation.
+- This optimization improves performance by saving on redundant calculations.
+```
