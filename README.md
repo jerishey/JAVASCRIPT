@@ -2625,3 +2625,21 @@ Explanation:
 - memoize caches the results of slowFunction calls. The second time fast(5) is called, the result is fetched from the cache, avoiding recomputation.
 - This optimization improves performance by saving on redundant calculations.
 ```
+
+## 12. Arrays
+In JavaScript, an array is an ordered list of values. Each value, known as an element, is assigned a numeric position in the array called its index. The indexing starts at 0, so the first element is at position 0, the second at position 1, and so on.
+<br>
+Arrays can hold any type of data-such as numbers, strings, objects, or even other arrays-making them a flexible and essential part of JavaScript programming.
+```bash
+Syntax:
+let arrayName = [value1, value2, value3];
+```
+
+`Features of Arrays`
+```bash
+1. Stores multiple values
+2. Values are ordered
+3. Index starts from 0
+4. Can store different data types
+5. Dynamic in size
+```
