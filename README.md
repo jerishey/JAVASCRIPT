@@ -2875,3 +2875,346 @@ console.log(typeof a);
 Output:
 object
 ```
+
+## 13. Strings 
+A JavaScript String is a sequence of characters, typically used to represent text.
+- In JavaScript, there is no character type (Similar to Python and different from C, C++ and Java), so a single character string is used when we need a character.
+- Like Java and Python, strings in JavaScript are immutable.
+
+### `Creating String`
+
+`1. Create using Literals :` We can either use a single quote or a double quote to create a string. We can use either of the two, but it is recommended to be consistent with your choice throughout your code.
+```bash
+// Using Single Quote
+let s1 = 'abcd';
+console.log(s1);
+
+// Using Double Quote
+let s2 = "abcd";
+console.log(s2);
+```
+
+`2. Create using Constructor :` The new String() constructor creates a string object instead of a primitive string. It is generally not recommended because it can cause unexpected behavior in comparisons
+```bash
+let s = new String('abcd');
+console.log(s);
+```
+
+`3. Template Literals (String Interpolation) :` You can create strings using Template Literals. Template literals allow you to embed expressions within backticks (`) for dynamic string creation, making it more readable and versatile.
+```bash
+let s1 = 'JavaScript';
+let s2 = `You are learning ${s1}`;
+
+console.log(s2);
+```
+
+`4. Empty String :` You can create an empty string by assigning either single or double quotes with no characters in between.
+```bash
+let s1 = '';
+let s2 = "";
+
+console.log(s1);
+console.log(s2);
+
+- Since the strings are empty, console.log will print two blank lines.
+```
+
+`Multiline Strings (ES6 and later) :` You can create a multiline string using backticks (``) with template literals. The backticks allows you to span the string across multiple lines, preserving the line breaks within the string.
+```bash
+let s = `
+    This is a
+    multiline
+    string`;
+
+console.log(s);
+```
+
+### `Basic Operations on JavaScript Strings`
+
+`1. Finding the length of a String :` You can find the length of a string using the length property.
+```bash
+let s = 'JavaScript';
+let len = s.length;
+
+console.log("String Length: " + len);
+```
+
+`2. String Concatenation :` You can combine two or more strings using + Operator. 
+<br>
+But we can also use concat() combines the text of two strings and returns a new combined or joined string.
+```bash
+Example: For +
+
+let s1 = 'Java';
+let s2 = 'Script';
+let res = s1 + s2;
+
+console.log("Concatenated String: " + res);
+```
+
+`3. Escape Characters :` We can use escape characters in string to add single quotes, dual quotes, and backslash.
+```bash
+\' - Inserts a single quote
+\" - Inserts a double quote 
+\\ - Inserts a backslash
+```
+
+`4. Find Substring of a String :` 
+<br>
+
+`1. substring() :` The substring() method is used to extract a portion of a string. It returns a new string without changing the original one.
+
+- Extracts characters between two given indices.
+- The ending index is not included in the result.
+- The original string remains unchanged.
+```bash
+Syntax : string.substring(startIndex, endIndex);
+
+Parameter:
+1. StartIndex: Describe the part of the string to be taken as a substring
+2. EndIndex: Describe the part of the string to be taken as a substring(optional). 
+
+Return value : It returns a new string that is part of the given string. 
+
+Example:
+let s = "Hello, World!";
+
+// Extract substring from index 7 to index 12
+let res = s.substring(7, 12);
+
+console.log(res);
+```
+
+`2. substr() :` The substr() method in JavaScript extracts a portion of a string, starting from a specified index position and extending for a given number of characters.
+```bash
+Syntax : str.substr(start, length)
+
+Parameter:
+1. start: The index where the extraction begins.
+2. length (optional): The number of characters to extract. If omitted, it extracts the rest of the string from the start index.
+
+Return value : Returns a string that is part of the given string. If the length is 0 or a negative value then it returns an empty string. 
+If we want to extract the string from the end then use a negative start position.
+
+Example:
+// Define a string variable 'str'
+let str = "Mind, Power, Soul";
+
+// Use the substr() method to extract a substring f
+let part = str.substr(6, 5);
+
+// Output the value of variable
+console.log(part);
+```
+
+`3. slice() :` The slice() method in JavaScript is used to extract a portion of a string and create a new string without modifying the original string.
+```bash
+Syntax : string.slice(startingIndex, endingIndex);
+
+Parameters:
+1. startingIndex: It is the start position and it is required(The first character is 0).
+2. endingIndex: (Optional)It is the end position (up to, but not including). The default is string length.
+
+Return Value : It returns a part or a slice of the given input string.
+
+Example:
+// Define a string variable 
+let A = 'I am Learning JS';
+
+// Use the slice() method to extract a substring
+let b = A.slice(0, 5);
+let c = A.slice(6, 9);
+let d = A.slice(10);
+
+// Output the value of variable
+console.log(b);
+console.log(c);
+console.log(d);
+```
+
+<br>
+
+`5. Convert String to Uppercase and Lowercase :` 
+
+`1. toUpperCase() :` The toUpperCase() method is used to convert all letters in a string to uppercase. It helps standardize text for comparison or display.
+
+- Converts all lowercase letters to uppercase.
+- Special characters and digits remain unchanged.
+- Letters that are already uppercase stay the same.
+
+`2. toLowerCase() :` The JavaScript toLowerCase() method Converts all characters of a string to lowercase and returns a new string without changing the original.
+
+- Used for case-insensitive comparisons
+- Helps standardize user input
+- Common in text formatting and data validation
+- Does not modify the original string
+```bash
+let s = 'JavaScript';
+let uCase = s.toUpperCase();
+let lCase = s.toLowerCase();
+
+console.log(uCase);
+console.log(lCase);
+```
+
+`6. String Search in JavaScript :` The indexOf() method is used to find the position of a value inside a string. It returns the index where the value first appears.
+
+- Returns the 0-based index of the first occurrence.
+- Used to locate a substring inside a string.
+- It is case-sensitive, so different letter cases are treated differently.
+```bash
+Syntax : str.indexOf(searchValue , index);
+
+Parameters:
+1. searchValue: The searchValue is the string to be searched in the base string. 
+2. index: The index defines the starting index from where the search value will be searched in the base string.
+
+Return value:
+1. If the searchValue is found, the method returns the index of its first occurrence.
+2. If the searchValue is not found, the method returns -1.
+
+Example:
+// Original string
+let str = 'Departed Train';
+
+// Finding index of occurrence of 'Train'
+let index = str.indexOf('Train');
+console.log(index);
+```
+
+`7. String Replace in JavaScript :`
+
+`1. replace() :` JavaScript replace() method is used for manipulating strings. It allows you to search for a specific part of a string, called a substring, and then replace it with another substring.
+```bash
+Syntax : str.replace(value1, value2);
+
+Parameters:
+1. value1: is the regular expression that is to be replaced
+2. value2: is a string that will replace the content of the given string. 
+
+Return Values : It returns a new string with replaced items.
+
+Example:
+// Define a string variable 'str' 
+let str = "Mind, Power, Soul";
+
+// Use the replace() method to replace the substring
+let part = str.replace("Power", "Space");
+
+// Output the resulting string after replacement
+console.log(part);
+```
+
+`2. replaceAll() :` The replaceAll() method in JavaScript is used to replace all occurrences of a specified substring or pattern with a new substring. The replaceAll() method does not change the original string.
+```bash
+Syntax : const newString = originalString.replaceAll(regexp | substr , newSubstr | function)
+
+Parameters:
+1. regexp: It is the regular expression whose matches are replaced with the newSubstr or the value returned by the specified function.
+
+2. substr: It defines the substrings which are to be replaced with newSubstr or the value returned by the specified function.
+
+3. newSubstr: It is the substring that replaces all the matches of the string specified by the substr or the regular expression.
+
+4. function: It is the function that is invoked to replace the matches with the regexp or substr.
+
+Return Value : Returns a String where the search value has been replaced.
+
+Example:
+// Define a string variable 'str'
+let str = "Mind, Power, Power, Soul";
+
+// Use the replaceAll() method to replace all occurrences
+//of "Power" with "Space" in the string 'str'
+let part = str.replaceAll("Power", "Space");
+
+// Output the resulting string after replacement
+console.log(part);
+```
+
+`8. Trimming Whitespace from String :`
+
+`1. trim() :` The trim() method is used to remove extra spaces from a string. It helps clean user input by removing unwanted whitespace.
+
+- Removes whitespace from both ends of the string.
+- Returns a new trimmed string.
+- The original string is not modified.
+```bash
+let text = "   Hello World   ";
+
+let result = text.trim();
+
+console.log(result);
+```
+
+`2. trimStart() :` The trimStart() method in JavaScript is used to remove whitespace from the beginning of a string. The value of the string is not modified in any manner, including any whitespace present after the string. 
+```bash
+Syntax : string.trimStart();
+
+Return Value : It returns the final string that is stripped out of all the white space in the beginning. 
+```
+
+`3. trimLeft() :` The trimStart() method has an alias which is the trimLeft() method. It performs exactly the same function as the trimStart() method. 
+```bash
+Syntax : string.trimLeft();
+
+Return Value : It returns the final string that is stripped out of all the white space in the beginning.
+```
+
+`4. trimEnd() :` The trimEnd() method in JavaScript is used to remove white space from the end of a string. The value of the string is not modified in any manner, including any white-space present before the string. 
+```bash
+Syntax : string.trimEnd()
+
+Return Value: It returns the final string that is stripped out of all the white space at the end. 
+```
+
+`9. Access Characters from String :` The charAt() method in JavaScript is used to get a character from a string at a specific position. It helps you access individual characters easily using an index value.
+
+- It takes an index number as an argument and returns the character at that position.
+- JavaScript follows zero-based indexing (first character is at index 0).
+- If the index is out of range, it returns an empty string.
+```bash
+Syntax : character = str.charAt(index);
+
+Parameters : The charAt() method accepts a single parameter called index. This index determines which character from the string will be returned.
+2. The index must be between 0 and string.length - 1.
+3. If no index is provided, it uses 0 by default.
+4. By default, it returns the first character of the string.
+
+Return Value : The charAt() method returns a value based on the index you provide. It gives you the character found at that specific position in the string.
+2. Returns the character located at the given index.
+3. If the index is valid, a single character is returned.
+4. If the index is out of range, it returns an empty string ("").
+
+Example:
+function func() {
+    // Original string
+    let str = 'JavaScript is object oriented language';
+
+    // Finding the character at given index
+    let value = str.charAt(0);
+    let value1 = str.charAt(4);
+    console.log(value);
+    console.log(value1);
+}
+func();
+```
+
+`10. String Comparison in JavaScript :` There are some inbuilt methods that can be used to compare strings such as the equality operator and another like localeCompare() method.
+```bash
+let s1 = "Ajay"
+let s2 = new String("Ajay");
+
+console.log(s1 == s2);  // true (type coercion)
+console.log(s1 === s2); // false (strict comparison)
+console.log(s1.localeCompare(s2)); // 0 (means they are equal lexicographically)
+```
+
+`11. Passing JavaScript String as Objects :` We can create a JavaScript string using the new keyword.
+```bash
+const str = new String("JavaScript");
+
+console.log(str);
+
+- the string created by the new keyword is an object and is not the same as normal strings.
+```
