@@ -3081,6 +3081,7 @@ let str = 'Departed Train';
 let index = str.indexOf('Train');
 console.log(index);
 ```
+<br>
 
 `7. String Replace in JavaScript :`
 
@@ -3131,6 +3132,7 @@ let part = str.replaceAll("Power", "Space");
 // Output the resulting string after replacement
 console.log(part);
 ```
+<br>
 
 `8. Trimming Whitespace from String :`
 
@@ -3167,8 +3169,11 @@ Syntax : string.trimEnd()
 
 Return Value: It returns the final string that is stripped out of all the white space at the end. 
 ```
+<br>
 
-`9. Access Characters from String :` The charAt() method in JavaScript is used to get a character from a string at a specific position. It helps you access individual characters easily using an index value.
+`9. Access Characters from String :` 
+
+`1. The charAt() :` method in JavaScript is used to get a character from a string at a specific position. It helps you access individual characters easily using an index value.
 
 - It takes an index number as an argument and returns the character at that position.
 - JavaScript follows zero-based indexing (first character is at index 0).
@@ -3199,6 +3204,39 @@ function func() {
 }
 func();
 ```
+`2. charCodeAt() :` The JavaScript str.charCodeAt() method returns the Unicode code unit of the character at a given index in a string.
+
+- Index starts from 0 to length - 1.
+- Returns a number (Unicode value).
+- Accepts an index as an argument.
+- Used to get the numeric code of a character.
+```bash
+Syntax : str.charCodeAt(index)
+
+Parameters : This method takes one parameter called index to identify a character in the string. It uses this index to work with the Unicode value of that character.
+1. The method accepts a single parameter: index.
+2. The index must be between 0 and string.length - 1.
+3. It refers to the position of the character whose Unicode value is used.
+
+Return value : This method returns a numeric value based on the character’s Unicode code. The value depends on the index you provide.
+1. Returns the Unicode value (between 0 and 65535) of the character.
+2. The value corresponds to the character at the given index.
+3. If the index is out of range, it returns NaN.
+
+Example:
+// JavaScript to illustrate charCodeAt() method
+function func() {
+    let str = 'ephemeral';
+
+    // Finding the code of the character at
+    // given index
+    let value = str.charCodeAt(4);
+    console.log(value);
+}
+
+func();
+```
+<br>
 
 `10. String Comparison in JavaScript :` There are some inbuilt methods that can be used to compare strings such as the equality operator and another like localeCompare() method.
 ```bash
@@ -3217,4 +3255,17 @@ const str = new String("JavaScript");
 console.log(str);
 
 - the string created by the new keyword is an object and is not the same as normal strings.
+```
+
+`12. JavaScript String split() Method :` The JavaScript split() method is used to break a string into an array of substrings based on a given separator. It helps in processing and manipulating string data more easily.
+
+- The separator can be a character, string, or regular expression.
+- It returns an array and does not change the original string.
+- An optional limit parameter can be used to control the number of splits.
+```bash
+Syntax : str.split( separator, limit );
+
+let str = "Hello and Welcome to JavaScript World!";
+let words = str.split(" ");
+console.log(words);
 ```
