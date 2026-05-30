@@ -3357,3 +3357,131 @@ let str = "Hello and Welcome to JavaScript World!";
 let words = str.split(" ");
 console.log(words);
 ```
+
+## 14. Objects
+An object is a dynamic data structure that stores related data as key-value pairs, where each key uniquely identifies its value.
+
+- The values of properties can be primitives, objects, or functions (known as methods when defined inside an object).
+- Objects are mutable and dynamic properties can be added, modified, or deleted at any time.
+- Objects allow data grouping and encapsulation, making it easier to manage related information and behaviour together.
+
+### `Creating Objects`
+
+`1. Creation Using Object Literal :` The object literal syntax allows you to define and initialize an object with curly braces {}, setting properties as key-value pairs.
+```bash
+let obj = {
+    name: "Rajni",
+    age: 21,
+    job: "Developer"
+};
+console.log(obj);
+```
+
+`2. Creation Using new Object() Constructor :`
+```bash
+let obj = new Object();
+obj.name= "Nitish",
+obj.age= 23,
+obj.job= "Developer"
+
+console.log(obj);
+``` 
+
+### `Basic Operations on JavaScript Objects`
+
+`1. Accessing Object Properties :` You can access an object’s properties using either dot notation or bracket notation
+```bash
+let obj = { name: "Shivam", age: 23 };
+
+// Using Dot Notation
+console.log(obj.name);
+
+// Using Bracket Notation
+console.log(obj["age"]);
+```
+
+`2. Modifying Object Properties :` Properties in an object can be modified by reassigning their values.
+```bash
+let obj = { name: "Rakesh", age: 21 };
+console.log(obj);
+
+obj.age = 23;
+console.log(obj);
+```
+
+`3. Adding Properties to an Object :` You can dynamically add new properties to an object using dot or bracket notation.
+```bash
+let obj = { model: "Tesla" };
+obj.color = "Red";
+
+console.log(obj);
+```
+
+`4. Removing Properties from an Object :` The delete operator removes properties from an object.
+```bash
+let obj = { model: "Tesla", color: "Red" };
+delete obj.color;
+
+console.log(obj);
+```
+
+`5. Checking if a Property Exists :` You can check if an object has a property using the in operator or hasOwnProperty() method.
+```bash
+let obj = { model: "Tesla" };
+console.log("color" in obj);
+console.log(obj.hasOwnProperty("model"));
+```
+
+`6. Iterating Through Object Properties :` Use for...in loop to iterate through the properties of an object.
+```bash
+let obj = { name: "Nitish", age: 23 };
+for (let key in obj) {
+    console.log(key + ": " + obj[key]);
+}
+```
+
+`7. Merging Objects :` Objects can be merged using Object.assign() or the spread syntax { ...obj1, ...obj2 }.
+```bash
+let obj1 = { name: "Rajni" };
+let obj2 = { age: 21};
+
+let obj3 = { ...obj1, ...obj2 };
+console.log(obj3);
+```
+
+`8. Object Length :` You can find the number of properties in an object using Object.keys().
+```bash
+let obj = { name: "Sourav", age: 23 };
+console.log(Object.keys(obj).length);
+```
+
+### `Common Mistakes with JavaScript Objects :` 
+In JavaScript, there are two main ways to create objects
+
+- Using Object Literal Syntax ({}): This is the most common and simple way to create objects.
+- Using the Object Constructor (new Object()): This uses JavaScript's built-in Object constructor to create objects.
+```bash
+// Object literal
+const obj1 = { key: "value" };
+
+// Object constructor
+const obj2 = new Object();
+obj2.key = "value";
+
+console.log(obj1);
+console.log(obj2);
+```
+- At first glance, both approaches seem to achieve the same result. However, there are significant differences to understand.
+<br>
+
+### `Differences Between {} and new Object()`
+
+| Feature                    | `{}` (Object Literal)                            | `new Object()` (Object Constructor)                                                 |
+| -------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| **Ease of Use**            | More concise, readable, and widely used.         | Less commonly used and more verbose.                                                |
+| **Performance**            | Slightly faster and more efficient.              | Slightly slower due to the constructor call.                                        |
+| **Prototypal Inheritance** | Directly inherits from `Object.prototype`.       | Also inherits from `Object.prototype`, but involves an additional constructor step. |
+| **Customization**          | Literal syntax is sufficient for most use cases. | Useful only in rare scenarios requiring dynamic object creation patterns.           |
+| **Code Length**            | Requires less code.                              | Requires more code.                                                                 |
+| **Readability**            | Easier to understand and maintain.               | Less readable compared to object literals.                                          |
+| **Recommendation**         |  Preferred in modern JavaScript.                |  Generally not recommended unless specifically needed.                             |
