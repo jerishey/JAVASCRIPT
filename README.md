@@ -3590,3 +3590,126 @@ Explanation:
 The window is named "NewWindow", and its size is set to 500px by 500px.
 2. newWindow.resizeTo(300, 300) resizes the newly opened window to 300px by 300px. This resizing happens after the window is opened.
 ```
+
+## 16. Document Object Model
+The JavaScript HTML DOM (Document Object Model) represents the structure of an HTML document as a tree of objects. It allows JavaScript to interact with and modify the content and elements of a webpage dynamically.
+- By using the DOM, JavaScript can access and manipulate HTML elements, attributes, and styles.
+- DOM manipulation enables updating the content, structure, or styling of a page without reloading the webpage.
+
+### `Features of DOM`
+```bash
+1. Tree Structure : The DOM represents an HTML document as a hierarchical tree structure. Each element, attribute, and text is organized as a node, making it easy to understand and navigate the relationships between different parts of a webpage.
+
+2. Node-Based Representation : In the DOM, every component of a webpage—including HTML elements, attributes, and text content—is represented as a node. This node-based structure allows scripts to access and manipulate any part of the document efficiently.
+
+3. Dynamic Content Manipulation : The DOM allows developers to create, modify, update, or remove HTML elements and content dynamically. Changes made through the DOM are reflected instantly on the webpage without requiring a page refresh.
+
+4. Element Access and Selection : The DOM provides various methods such as `getElementById()`, `getElementsByClassName()`, and `querySelector()` to locate and access specific elements. This makes it easier to interact with and modify webpage content programmatically.
+
+5. Style Manipulation : The DOM enables developers to change the appearance of webpage elements by modifying CSS properties, classes, and styles dynamically. This helps create responsive and visually interactive user interfaces.
+
+6. Event Handling : The DOM supports event handling, allowing webpages to respond to user actions such as mouse clicks, keyboard inputs, form submissions, and other interactions. This feature is essential for building dynamic and interactive web applications.
+```
+
+### `Accessing Elements in the DOM` 
+
+`1. getElementById() :` Retrieves an element by its id.
+```bash
+let heading = document.getElementById("title");
+console.log(heading.textContent);
+```
+
+`2. getElementsByClassName() :` Returns a collection of elements with a specified class.
+```bash
+let items = document.getElementsByClassName("list-item");
+console.log(items[0].textContent);
+```
+
+`3. getElementsByTagName() :` Selects elements by their tag name.
+```bash
+let paragraphs = document.getElementsByTagName("p");
+console.log(paragraphs.length);
+```
+
+`4. querySelector() :` Returns the first element matching a CSS selector.
+```bash
+let firstParagraph = document.querySelector("p");
+console.log(firstParagraph.textContent);
+```
+
+`5. querySelectorAll() :` Returns all elements matching a CSS selector.
+```bash
+let allParagraphs = document.querySelectorAll("p");
+allParagraphs.forEach(p => console.log(p.textContent));
+``` 
+
+### `Modifying the DOM`
+
+`1. Changing Content :` You can modify the content of an element using textContent or innerHTML.
+```bash
+document.getElementById("title").textContent = "New Heading";
+document.getElementById("content").innerHTML = "<b>Updated Content</b>";
+```
+
+`2. Changing Attributes :` You can modify attributes like src, href, alt, etc.
+```bash
+document.getElementById("myImage").src = "new-image.jpg";
+```
+
+### `Adding and Removing Elements`
+
+`1. Create an element :`
+```bash
+let newPara = document.createElement("p");
+newPara.textContent = "This is a new paragraph.";
+document.body.appendChild(newPara);
+```
+
+`2. Remove an element :`
+```bash
+let oldPara = document.getElementById("removeMe");
+oldPara.remove();
+```
+
+### `Event Handling in the DOM`
+JavaScript allows us to handle events such as clicks, keypresses, mouse movements, etc.
+
+`Adding an Event Listener :`
+```bash
+document.getElementById("btn").addEventListener("click", function() { 
+   alert("Button Clicked!");
+});
+```
+
+`Removing an Event Listener :`
+```bash
+function sayHello() { 
+   console.log("Hello!");
+}
+let btn = document.getElementById("btn");
+btn.addEventListener("click", sayHello);
+btn.removeEventListener("click", sayHello);
+```
+
+`Event Object :` The event object provides details about the event.
+```bash
+document.getElementById("inputField").addEventListener("keyup", function(event) {
+   console.log("Key pressed: ", event.key);
+});
+```
+
+### `Traversing the DOM`
+JavaScript provides properties to navigate through the DOM tree.
+```bash
+1. parentNode: Gets the parent element.
+
+2. children: Gets all child elements.
+
+3. firstChild / lastChild: Gets the first/last child.
+
+4. nextSibling / previousSibling: Gets the next/previous sibling.
+
+Example:
+let parent = document.getElementById("myDiv").parentNode;
+console.log(parent.tagName);
+```
