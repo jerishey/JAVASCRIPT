@@ -3859,3 +3859,101 @@ document.getElementById("demo").dataset.userId = "12345";
 let userId = document.getElementById("demo").dataset.userId;
 console.log(userId); // Outputs: 12345
 ```
+
+## 17. DOM and Events
+Working with the DOM and events allows JavaScript to make web pages interactive by responding to user actions. Events are actions like clicks, typing, or hovering that trigger specific functions.
+- Events like click, submit, and keydown trigger JavaScript functions.
+- Event listeners (addEventListener) are used to handle user interactions.
+- Enables dynamic updates to the DOM based on user actions.
+
+### `Using DOM and Events`
+Suppose we want to make changes in the document or stylesheet on a certain event. The event can be the loading of a web page, selection of any specific element or a form is submitted, etc.
+
+`1. Window Event Attributes :` These events are triggered for the window object.
+- onload: onload fires after the page is finished loading.
+- onresize: onresize fires when the browser window is resized.
+
+`2. Mouse Events :` These are the most common events with basic interaction of user through the mouse.
+- onclick: onclick fires when a mouse click is triggered on an element.
+- onmouseover: onmouseover fires when a mouse pointer moves over an element.
+- ondblclick: ondblclick fires on a mouse double click on the element.
+
+`3. Keyboard Events :` Handle keyboard interactions.
+- onkeydown: onkeydown fires when the user is pressing a specific key.
+- onkeyup: onkeyup fires when a user releases a specific key.
+
+### `Example : Using DOM and Event`
+
+<b> `1. Click` </b>
+```bash
+<!DOCTYPE html>
+<html>
+<head>
+<title>DOM and Events</title>
+  <style>
+    .container {
+            height: 150px;
+            width: 300px;
+            background-color: green;
+            text-align: center;
+            color: white;
+            font-size: 30px;
+            margin: auto;
+            font-weight: bolder;
+            font-family: -apple-system, BlinkMacSystemFont,
+                        'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+                        'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+  </style>
+</head>
+<body>  
+    <div class="container">GeeksforGeeks</div>
+    <script>
+        let container = document.querySelector('.container');
+        container.addEventListener('click', function(e) {
+            container.style.color = "black";
+        });
+    </script>  
+</body>
+</html>
+```
+
+<b>` 2. Keyboard event and event Listener` </b>
+```bash
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DOM and Events</title>
+    <style>
+        * {
+            font-family: -apple-system, BlinkMacSystemFont,
+              'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 
+              'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        Message will be displayed when 
+        you press the Enter key
+    </h3>
+
+    <input type="text" class="inputArea">
+    <p></p>
+
+    <script>
+        let input = document.querySelector(".inputArea");
+        let p = document.querySelector("p");
+      
+        input.addEventListener('keydown', function(e) {
+            if (e.key === "Enter") {
+                p.textContent = "You pressed Enter";
+            }
+        });
+    </script>
+</body>
+
+</html>
+```
