@@ -4081,3 +4081,126 @@ Explanation:
 - stopPropagation() halts further propagation.
 ```
 
+### `Event Delegation`
+Event Delegation is a pattern used to handle events efficiently by attaching a single event listener to a parent element instead of adding listeners to multiple similar child elements, and then identifying the actual source of the event using the event.target property.
+
+- Reduces the number of event listeners.
+- Improves performance and memory usage.
+- Uses event bubbling to capture events.
+- Ideal for dynamically added elements.
+```bash
+document.querySelector("ul").addEventListener("click", (e) => {
+    if (e.target.tagName === "LI") {
+        console.log(`Clicked on item: ${e.target.textContent}`);
+    }
+});
+
+- Events are delegated to list, reducing the need to add listeners to each list item.
+```
+
+### `Preventing Default Behavior`
+The preventDefault() method is used to prevent the browser from executing the default action of the selected element. It can prevent the user from processing the request by clicking the link.
+```bash
+Syntax : event.preventDefault()
+
+Parameters : It does not accept any parameter. The event is used to denote the event or action by the user in the response to which the method works.
+
+Example:
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> preventDefault() Event Method </title>
+    <!-- INCLUDE THE JQUERY CDN -->
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("a").click(function (event) {
+                event.preventDefault();
+                alert("prevented");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <p>Click the link:</p>
+    <a href="https://www.google.com/">GOOGLE</a>
+</body>
+
+</html>
+```
+
+### `Example`
+
+`1. Form Validation`
+```bash
+<html>
+<body>
+    <h2>Form Validation</h2>
+    <form id="example">
+        <input type="text" placeholder="Enter something" id="formInput" />
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        document.querySelector("#example").addEventListener("submit", (e) => {
+            let input = document.querySelector("#formInput");
+            if (!input.value) {
+                e.preventDefault();
+                alert("Input cannot be empty");
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+```
+
+`2. Dynamic Content`
+```bash
+<html>
+
+<body>
+    <h2>Dynamic Content</h2>
+    <button id="button">Add Element</button>
+    <script>
+        document.querySelector("#button").addEventListener("click", () => {
+            let newDiv = document.createElement("div");
+            newDiv.textContent = "New Element Added";
+            newDiv.style.margin = "10px 0";
+            document.body.appendChild(newDiv);
+        });
+    </script>
+
+</body>
+
+</html>
+```
+
+`3. Interactive Lists`
+```bash
+<html>
+
+<body>
+    <h2>Interactive Lists</h2>
+    <ul id="lists">
+        <li>Interactive Item 1</li>
+        <li>Interactive Item 2</li>
+        <li>Interactive Item 3</li>
+    </ul>
+    <script>
+        let ul = document.querySelector("#lists");
+
+        ul.addEventListener("click", (e) => {
+            if (e.target.tagName === "LI") {
+                e.target.style.backgroundColor = "yellow";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+```
