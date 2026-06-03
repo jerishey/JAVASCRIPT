@@ -4204,3 +4204,103 @@ Example:
 
 </html>
 ```
+
+## 19. Event Loop
+The event loop is an important concept in JavaScript that enables asynchronous programming by handling tasks efficiently. Since JavaScript is single-threaded, it uses the event loop to manage the execution of multiple tasks without blocking the main thread.
+```bash
+console.log("Start");
+
+setTimeout(() => {
+    console.log("setTimeout Callback");
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("Promise Resolved");
+});
+
+console.log("End");
+
+Explanation:
+1. console.log("Start") executes first.
+2. setTimeout schedules its callbacks but does not execute it immediately.
+3. Promise.resolve().then() is placed in the microtask queue and executes before the callback queue.
+4. Promise Resolved appears before setTimeout Callback due to microtask priority.
+```
+
+### `Working of Event Loop`
+The event loop continuously checks whether the call stack is empty and whether there are pending tasks in the callback queue or microtask queue.
+```bash
+1. Call Stack: JavaScript has a call stack where function execution is managed in a Last-In, First-Out (LIFO) order.
+
+2. Web APIs (or Background Tasks): These include setTimeout, setInterval, fetch, DOM events, and other non-blocking operations.
+
+3. Callback Queue (Task Queue): When an asynchronous operation is completed, its callback is pushed into the task queue.
+
+4. Microtask Queue: Promises (.then(), .catch(), .finally()) and other microtasks are placed here. The microtask queue is always fully executed (drained) before moving to the next macrotask.
+
+5. Event Loop: It continuously checks the call stack and, if empty, moves tasks from the queue to the stack for execution.
+```
+
+### `Common Issues Related to the Event Loop`
+
+`1. Blocking the Main Thread :` Heavy computations block the event loop, making the app unresponsive.
+```bash
+while(true)
+{
+    console.log('Blocking...')
+}
+
+Explanation:
+1. An infinite while(true) loop continuously executes without termination, blocking the event loop.
+2. As a result, no other tasks (UI updates, callbacks, timers) can run, causing the browser to freeze.
+```
+
+`2. Delayed Execution of setTimeout :` setTimeout doesn’t always run exactly after the specified time.
+```bash
+console.log("Start");
+setTimeout(() => console.log("Inside setTimeout"), 1000);
+for (let i = 0; i < 1e9; i++) {} // Long loop
+console.log("End");
+
+Explanation:
+1. A blocking loop keeps the Call Stack busy, delaying setTimeout execution.
+2. This can freeze the browser or cause a Time Limit Exceeded error.
+```
+
+`3. Priority of Microtasks Over Callbacks :` Microtasks run before setTimeout, even if set with 0ms delay.
+```bash
+setTimeout(() => console.log("setTimeout"), 0);
+Promise.resolve().then(() => console.log("Promise"));
+console.log("End");
+
+Explanation:
+1. The event loop first checks the microtask queue before the callback (macrotask) queue.
+2. The microtask queue has higher priority than the callback queue in JavaScript.
+3. Therefore, functions in the microtask queue are executed before those in the callback queue.
+```
+
+`4. Callback Hell :` Too many nested callbacks make code unreadable.
+```bash
+setTimeout(() => {
+    console.log("Step 1");
+    setTimeout(() => {
+        console.log("Step 2");
+        setTimeout(() => {
+            console.log("Step 3");
+        }, 1000);
+    }, 1000);
+}, 1000);
+
+- This creates Callback Hell, making it hard to read and maintain. Use Promises or async/await instead.
+```
+
+### `Best Use Cases`
+```bash
+1. Use Asynchronous Operations: Avoid blocking the event loop with synchronous file reads or complex calculations.
+
+2. Optimize Long-Running Tasks: Use worker threads or child processes for CPU-intensive tasks.
+
+3. Use Microtasks Wisely: Since microtasks execute before other queued tasks, excessive usage can delay other operations.
+
+4. Debug Using Performance Tools: Utilize Node.js Performance Hooks and the Chrome DevTools profiler to monitor the event loop behavior.
+```
