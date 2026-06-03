@@ -3957,3 +3957,127 @@ Suppose we want to make changes in the document or stylesheet on a certain event
 
 </html>
 ```
+
+## 18. Events
+JavaScript Events are actions or occurrences that happen in the browser. They can be triggered by various user interactions or by the browser itself.
+
+### `Event Types`
+JavaScript supports a variety of event types. Common categories include:
+```bash
+1. Mouse Events: click, dblclick, mousemove, mouseover, mouseout
+2. Keyboard Events: keydown, keypress, keyup
+3. Form Events: submit, change, focus, blur
+4. Window Events: load, resize, scroll
+```
+
+### `Common JavaScript Events`
+| Event           | Definition                                                                |
+| --------------- | ------------------------------------------------------------------------- |
+| **onclick**     | Triggered when a user clicks on an HTML element.                          |
+| **onmouseover** | Fired when the mouse pointer moves over an element.                       |
+| **onmouseout**  | Occurs when the mouse pointer leaves an element.                          |
+| **onkeydown**   | Fired when a keyboard key is pressed down.                                |
+| **onkeyup**     | Triggered when a pressed key is released.                                 |
+| **onchange**    | Occurs when the value of an input field, select box, or textarea changes. |
+| **onload**      | Fired when a web page or resource has completely loaded.                  |
+| **onsubmit**    | Triggered when a form is submitted by the user.                           |
+| **onfocus**     | Occurs when an element receives focus and becomes active.                 |
+| **onblur**      | Fired when an element loses focus and becomes inactive.                   |
+
+
+### `Features of JavaScript Events`
+```bash
+1. User Interaction Handling : JavaScript events allow web pages to respond to user actions such as mouse clicks, keyboard presses, scrolling, and form inputs. This helps create interactive and engaging websites.
+
+2. Event-Driven Programming : Events enable code execution only when a specific action occurs. Instead of running continuously, JavaScript waits for an event and then performs the required task, making applications more efficient.
+
+3. Dynamic Content Updates : Events make it possible to change webpage content, styles, or attributes without reloading the page. This provides a smoother and faster user experience.
+
+4. Form Validation and Data Processing : JavaScript events can validate user input before a form is submitted. They help ensure that required fields are filled correctly and reduce invalid data entry.
+
+5. Enhanced User Experience : By responding instantly to user actions, events make web applications more interactive, responsive, and user-friendly. Features like hover effects, live search, and notifications rely on events.
+
+6. Browser and Element Monitoring : Events can detect when a page loads, an element gains or loses focus, or the browser window is resized. This helps developers manage page behavior and optimize application performance.
+```
+
+### `JavaScript Event Handlers`
+Event handlers can be used to handle and verify user input, user actions, and browser actions:
+- Things that should be done every time a page loads.
+- Things that should be done when the page is closed.
+- Action that should be performed when a user clicks a button.
+- Content that should be verified when a user inputs data.
+<br>
+
+There are several ways to handle events in JavaScript:
+- HTML event attributes can execute JavaScript code directly.
+- HTML event attributes can call JavaScript functions.
+- You can assign your own event handler functions to HTML elements.
+- You can prevent events from being sent or being handled.
+
+### `Event Handling Methods`
+
+`1. Inline HTML Handlers`
+```bash
+<button onclick="alert('Button clicked!')">Click Me</button>
+```
+
+`2. DOM Property Handlers`
+```bash
+let btn = document.getElementById("myButton");
+btn.onclick = () => {
+      alert("Button clicked!");
+};
+```
+
+`3. addEventListener()`
+```bash
+btn.addEventListener("click", () => {
+    alert("Button clicked using addEventListener!");
+});
+
+- addEventListener() is the most versatile and recommended method as it supports multiple event listeners and removal of listeners.
+```
+
+### `Event Propagation`
+Event Propagation defines the order in which event handlers are triggered when an event occurs in the DOM. In HTML and React, this behavior is handled using two main mechanisms: Event Bubbling and Event Capturing.
+<br>
+
+JavaScript events propagate in two phases:
+
+`1. Bubbling :` This behavior is known as Event Bubbling. When an event occurs on a component, the event handler is triggered first on the target (inner) component, then on its parent, and continues upward through all ancestor components.
+
+- Default event propagation behavior in the DOM and React.
+- Event flows from the innermost element to the outermost element.
+- Commonly used for handling events efficiently with parent components.
+
+`2. Capturing :` This behavior is known as Event Capturing. In this approach, the event is handled starting from the outermost (parent) element and then moves inward to the target component.
+
+- Event flows from parent to child (outermost to innermost).
+- Also referred to as trickle-down event propagation.
+- Used when you need to intercept events before they reach the target element.
+
+`3. stopPropagation() :` The stopPropagation() method is used to stop the propagation of event calling. That is a parent event is called we can stop the propagation of calling its children by using the stopPropagation() method and vice-versa.
+```bash
+Syntax : event.stopPropagation()
+
+Return Value: It does not return any value.
+```
+
+<b>`Example`</b>
+```bash
+const button = document.querySelector("button");
+
+document.querySelector("div").addEventListener("click", () => {
+    console.log("Div clicked");
+}, true);
+
+button.addEventListener("click", (e) => {
+    console.log("Button clicked");
+    e.stopPropagation();
+});
+
+Explanation:
+- Setting true in addEventListener makes it capture events during the capturing phase.
+- stopPropagation() halts further propagation.
+```
+
