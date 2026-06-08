@@ -4510,3 +4510,104 @@ processSteps();
 `Avoid callbacks when:`
 - Code becomes nested and unreadable (use Promises or async/await).
 - You need error handling in asynchronous operations (Promises are better).
+
+## 21. Event Bubbling
+Event bubbling in JavaScript is a mechanism where an event triggered on a child element propagates upward through its ancestors in the DOM. It allows parent elements to respond to events triggered by their child elements.
+
+- Propagation Direction: In event bubbling, the event starts at the target element and propagates upward through its parent elements to the root of the DOM.
+- Default Behavior: Event bubbling is enabled by default in JavaScript.
+- Event Listeners: If multiple event listeners are attached in the bubbling phase, they are executed in sequence, starting from the innermost target element.
+
+### `Working of Event Bubbling`
+```bash
+1. Event Triggering: The click event is triggered on the child element (button), initiating the event propagation.
+
+2. Event Capturing: In the capturing phase, the event propagates from the root of the DOM down to the target (child). However, no listeners are explicitly set to handle events in this phase in the given code.
+
+3. Event Bubbling: After reaching the target element (child), the event enters the bubbling phase, propagating back up through the DOM tree to the parent (parent).
+
+4. Listener Behavior: Event listeners are attached to both parent and child elements using addEventListener. By default, these listeners respond during the bubbling phase unless the capture option is set to true.
+
+5. Execution Order: When the button is clicked, the child listener executes first (console.log("Child")), followed by the parent listener (console.log("Parent")) as the event bubbles up.
+```
+
+<b>`Example` </b>
+```bash
+<html>
+<head>
+    <style>
+        *{
+            margin: 25px;
+            box-sizing: border-box;
+        }
+        .grandparent{
+            height: 350px;
+            width: 350px;
+            border: 2px solid red;
+        }
+        .parent{
+            height: 250px;
+            width: 250px;
+            border: 2px solid blue;
+        }
+        .child{
+            height: 150px;
+            width: 150px;
+            border: 2px solid green;
+        }
+    </style>
+</head>
+<body>
+    <div class="grandparent" id="one">
+        Grandparent
+        <div class="parent" id="two">
+            Parent
+            <div class="child" id="three">
+                Child
+            </div>
+        </div>
+    </div>
+    <script>
+        let grandparent=document.getElementById('one')
+        let parent=document.getElementById('two')
+        let child=document.getElementById('three')
+        grandparent.addEventListener('click',function(e){
+          
+            console.log("Grandparent Clicked")
+        })
+        parent.addEventListener('click',function(e){
+
+            console.log("Parent Clicked")
+        })
+        child.addEventListener('click',function(e){
+       
+            console.log("Child Clicked")
+        })
+    </script>
+</body>
+</html>
+```
+
+### `Use Cases of Event Bubbling`
+
+`1. Delegated Event Handling:` Instead of adding event listeners to multiple child elements, attach one to their parent and handle the events as they bubble up.
+```bash
+document.getElementById('parent').addEventListener('click', (event) => {
+    console.log('Clicked:', event.target.id);
+});
+```
+
+`2. Simplified Code :` Reduces redundancy and improves performance when handling events for dynamic or large DOM structures.
+<br>
+
+### `Event Bubbling Vs Event Capturing`
+
+| Event Bubbling | Event Capturing |
+|----------------|------------------|
+| The event starts at the target element and propagates upward to the root of the DOM. | The event starts at the root of the DOM and propagates downward to the target element. |
+| Event listeners are attached to handle events during the bubbling phase by default. | To handle events in the capturing phase, you must explicitly set the `capture` option to `true` in `addEventListener()`. |
+| Often used when you want parent elements to respond to events triggered on child elements (e.g., event delegation). | Useful when you want parent elements to handle the event before it reaches the target element. |
+| Inner (child) elements execute their event listeners first, followed by outer (parent) elements as the event propagates upward. | Outer (parent) elements execute their event listeners first, followed by inner (child) elements as the event propagates downward. |
+| Supported by all modern browsers and is the default event propagation behavior. | Supported by modern browsers but less commonly used because it requires explicit configuration. |
+| Syntax: `element.addEventListener("click", handler)` | Syntax: `element.addEventListener("click", handler, true)` |
+| Propagation Order: **Target → Parent → Ancestors** | Propagation Order: **Root → Parent → Target** |
