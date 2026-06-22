@@ -4740,3 +4740,77 @@ Explanation:
 4. console.log(data): Prints the fetched data to the console if the request is successful.
 5. try...catch: Handles errors such as network failure or invalid responses.
 ```
+</i>
+
+## 23. Object Oriented Programming in JavaScript
+Object-Oriented Programming (OOP) in JavaScript is a programming paradigm based on the concept of objects that contain data (properties) and behavior (methods). It focuses on designing software that closely represents real-world entities. It is used to:
+
+- Improves code reusability
+- Enhances maintainability and scalability
+- Makes programs easier to understand and manage
+- Closely models real-world entities
+
+### `Characteristics of OOP`
+```bash
+1. Encapsulation
+- Bundling data (variables) and methods (functions) into a single unit called a class.
+- Restricts direct access to data and improves security.
+
+2. Abstraction
+- Hides implementation details and shows only essential features to the user.
+- Reduces complexity and increases efficiency.
+
+3. Inheritance
+- Allows one class to acquire properties and methods of another class.
+- Promotes code reusability and hierarchical classification.
+
+4. Polymorphism
+- Enables a single interface to represent different forms.
+- Example: The same method can perform different tasks based on the object.
+
+5. Dynamic Binding
+- The method to be executed is determined at runtime rather than compile time.
+
+6. Message Passing
+- Objects communicate with each other by sending messages (calling methods).
+```
+
+### `1. Class`
+A Class in JavaScript is a blueprint or template used to create objects. It defines the properties (data) and behaviors (methods) that objects of that class will have.
+- A class is a user-defined blueprint for creating objects.
+- It contains properties and methods.
+- Multiple objects can be created from a single class.
+- Example: A Car represents a class (blueprint), while BMW, Mercedes, and Audi represent objects (instances) created from that class.
+
+### `2. Object`
+An Object in JavaScript is an instance of a class that represents a real-world entity. It is used to access the properties and methods defined inside a class.
+
+- State: Represents the current data or attributes of an object.
+- Behavior: Represents the actions that an object can perform.
+- Identity: Every object has a unique identity in memory that distinguishes it from other objects.
+- Example: Dog is a class, Tommy is an object of that class.
+
+### `3. Abstraction`
+Abstraction in JavaScript is the process of hiding implementation details and showing only the essential features of an object. It helps users focus on what an object does rather than how it does it.
+
+- Hides complexity from the user.
+- Improves maintainability.
+- Enhances flexibility and modularity.
+- Example: An ATM or a coffee machine represents abstraction, where the user interacts with simple operations while the internal implementation details remain hidden.
+<br>
+
+<b>`How to Achieve Abstraction :`</b>
+<br>
+It is achieved in JavaScript using classes, closures, modules, and private fields.
+```bash
+- Classes provide a structured way to hide implementation details.
+- Closures can restrict direct access to variables.
+- Private fields (#) hide internal data from external access.
+```
+
+### `4. Encapsulation`
+Encapsulation is the process of wrapping data and methods into a single unit and restricting direct access to the data. It acts as a protective shield that prevents data from being accessed directly from outside the object.
+
+- Data can be hidden using private fields (#).
+- Access to data is provided through public methods.
+- It improves data security, maintainability, and controlled access.
