@@ -4935,3 +4935,56 @@ Similar functionality can be achieved using default parameters, optional paramet
 
 4. Higher Memory Consumption: Creating and managing a large number of objects can require more memory compared to procedural approaches.
 ```
+
+## 24. JavaScript Classes
+A JavaScript class is a blueprint for creating objects. It allows developers to define properties and methods in a single structure, making code more organized, reusable, and easier to maintain.
+
+- Introduced in ES6, classes provide a structured way to create objects with shared properties and methods.
+- They support object-oriented programming concepts such as inheritance, encapsulation, and modularity.
+
+`Syntax :`
+```bash
+class ClassName {
+    constructor() {
+        // Initialize properties here
+    }
+    // Define methods here
+    methodName() {
+        // Method code
+    }
+}
+
+Explanation:
+1. The class keyword is used to declare a class.
+2. The constructor() method is a special method that is automatically called when an instance of the class is created.
+3. You can define methods inside the class to provide behaviour for objects created from the class.
+```
+
+### `Key Features of JavaScript Classes`
+```bash
+1. Encapsulation: Bundles data (properties) and behaviour (methods) together.
+2. Constructor Method: Initializes properties when an object is created.
+3. Inheritance: Allows one class to inherit properties and methods from another.
+4. Code Reusability: Enables the creation of multiple instances with shared functionality.
+5. Simplicity & Clarity: Provides a clear structure for creating and managing objects.
+```
+
+<b> `Example` </b>
+```bash
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    g() {
+        console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+    }
+}
+let p1 = new Person("Pranjal", 20);
+p1.g();
+
+Explanation:
+1. The Person class has a constructor to set name and age, and a g method to log a greeting message.
+2. An instance (p1) is created with new, passing "Pranjal" and 20, then calls g to print the greeting.
+```
+
