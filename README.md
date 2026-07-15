@@ -4988,3 +4988,101 @@ Explanation:
 2. An instance (p1) is created with new, passing "Pranjal" and 20, then calls g to print the greeting.
 ```
 
+## 25. JavaScript Inheritance
+Inheritance in JavaScript is a mechanism that allows one object or class to acquire properties and methods from another. It helps in code reusability and creating hierarchical relationships between classes.
+
+- Allows reuse of properties and methods from a parent class.
+- Implemented using the extends keyword in ES6 classes.
+- Supports method overriding in child classes.
+- Example: Animal is the base class and Dog, Cat and Cow are derived classes that extend the Animal class.
+
+### Types of Inheritance
+
+`1. prototype-based inheritance :` JavaScript uses prototypes to share properties and methods among objects, enabling reuse across instances.
+```bash
+function Animal(name) {
+    this.name = name;
+}
+Animal.prototype.speak = function () {
+    console.log(`${this.name} makes a sound.`);
+};
+
+// Child constructor function
+function Dog(name) {
+    Animal.call(this, name); // Inherit properties
+}
+
+// Inherit methods from Animal
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+// Adding a new method to Dog
+Dog.prototype.bark = function () {
+    console.log(`${this.name} barks: Woof!`);
+};
+
+// Creating an instance
+const myDog = new Dog("Buddy");
+
+myDog.speak(); 
+myDog.bark();
+
+Explanation:
+
+1. Dog inherits from Animal using Object.create(Animal.prototype).
+2. Animal.call(this, name); ensures Dog gets the name property.
+3. Methods are checked in Dog.prototype, then Animal.prototype, then Object.prototype.
+4. Dog.prototype.bark() adds a new method while still inheriting speak().
+```
+
+`2. ES6 Class-based Inheritance :` This code demonstrates class inheritance in JavaScript, where a child class (two) extends a parent class (one). The child class inherits properties and methods from the parent class.
+```bash
+class one {
+    constructor(name) {
+        this.name = name
+    }
+    speaks() {
+        return `my name is ${this.name}`
+    }
+}
+class two extends one {
+    constructor(name) {
+        super(name)
+    }
+}
+const o = new two('Pranjal')
+console.log(o.speaks())
+
+Explanation:
+1. Class one has a constructor that sets the name property and a speaks() method that returns a string using this.name.
+2. Class two extends one and calls super(name) in its constructor to inherit the name property from the parent class.
+3. When an instance of two (o) is created with 'Pranjal', it passes 'Pranjal' to the parent class (one).
+4. Calling o.speaks() returns "my name is Pranjal" because two inherits the speaks() method from one.
+```
+
+`3. Mixins :` This code demonstrates prototypal inheritance and object merging using Object.assign(), allowing a constructor function (Person) to inherit methods from multiple objects (one and two).
+```bash
+const one = {
+    speak() {
+        return `${this.name} walks`
+    }
+}
+const two = {
+    walks() {
+        return `${this.name} walks`
+    }
+}
+function Person(name) {
+    this.name = name
+}
+Object.assign(Person.prototype, one, two)
+const person1 = new Person('Pranjal')
+console.log(person1.speak())
+console.log(person1.walks())
+
+Explanatoin:
+1. Objects one and two contain methods speak() and walks(), but they are separate objects.
+2. Person function is a constructor that assigns a name property to new instances.
+3. Object.assign(Person.prototype, one, two) merges methods from one and two into Person.prototype, so all instances of Person inherit these methods.
+4. Creating person1 with 'Pranjal' allows calling person1.speak() and person1.walks(), both returning "Pranjal walks", since this.name refers to the assigned name.
+```
